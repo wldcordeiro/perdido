@@ -1,0 +1,11 @@
+{
+  "name": "lost-jss",
+  "version": "0.1.0",
+  "description": "The Lost CSS grid rewritten as a JSS plugin",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wellington Cordeiro",
+  "license": "ISC"
+}
