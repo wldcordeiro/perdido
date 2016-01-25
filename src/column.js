@@ -13,18 +13,10 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
       cycleVal = cycle;
     }
 
+    style.width = calcDimension(columnVal, gutter);
+
     if (flex === 'flex') {
       style = addFlex(flex, style);
-
-      if (cycle !== 0) {
-        style[`&:nth-child(${cycleVal}n)`] = {
-          marginRight: '0'
-        };
-      }
-
-      style[`&:nth-child(${cycleVal}n)`] = {
-        float: 'right'
-      };
 
       style['&:nth-child(n)'] = {
         marginRight: gutter
@@ -33,22 +25,17 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
       style['&:last-child'] = {
         marginRight: '0'
       };
-    } else {
-      if (cycle !== 0) {
-        style[`&:nth-child(${cycleVal}n + 1)`] = {
-          clear: 'left'
-        };
-
-        style[`&:nth-child(${cycleVal}n)`] = {
-          marginRight: '0'
-        };
-
-      }
 
       style[`&:nth-child(${cycleVal}n)`] = {
         float: 'right'
       };
 
+      if (cycle !== 0) {
+        style[`&:nth-child(${cycleVal}n)`] = {
+          marginRight: '0'
+        };
+      }
+    } else {
       style['&:nth-child(n)'] = {
         float: 'left',
         marginRight: gutter,
@@ -58,20 +45,25 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
       style['&:last-child'] = {
         marginRight: '0'
       };
-    }
 
-    style.width = calcDimension(columnVal, gutter);
+      style[`&:nth-child(${cycleVal}n)`] = {
+        float: 'right'
+      };
+
+      if (cycle !== 0) {
+        style[`&:nth-child(${cycleVal}n)`] = {
+          marginRight: '0'
+        };
+
+        style[`&:nth-child(${cycleVal}n + 1)`] = {
+          clear: 'left'
+        };
+      }
+    }
   } else {
     style.width = 'auto';
 
-    style['&:nth-child(1n)'] = {
-      float: 'none',
-      clear: 'none',
-      marginRight: '0',
-      width: 'auto'
-    };
-
-    style['&:nth-child(1n +1)'] = {
+    style['&:last-child'] = {
       float: 'none',
       clear: 'none',
       marginRight: '0',
@@ -85,14 +77,20 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
       width: 'auto'
     };
 
-    style['&:last-child'] = {
+    style['&:nth-child(1n +1)'] = {
+      float: 'none',
+      clear: 'none',
+      marginRight: '0',
+      width: 'auto'
+    };
+
+    style['&:nth-child(1n)'] = {
       float: 'none',
       clear: 'none',
       marginRight: '0',
       width: 'auto'
     };
   }
-
 
   return style;
 }
