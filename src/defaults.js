@@ -3,6 +3,7 @@ import reduceCssCalc from 'reduce-css-calc';
 export const GUTTER = '30px';
 export const FLEX = 'no-flex';
 export const CYCLE = 'auto';
+export const OFFSET_DIR = 'row';
 
 export function calcDimension(val, gutter) {
   if (gutter !== 0) {
