@@ -1,11 +1,60 @@
 {
-  "name": "lost-jss",
+  "name": "perdido",
   "version": "0.1.0",
-  "description": "The Lost CSS grid rewritten as a JSS plugin",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "The Lost CSS grid reimagined to work with the JSS system",
+  "author": {
+    "name": "Wellington Cordeiro",
+    "email": "wellington@wellingtoncordeiro.com"
   },
-  "author": "Wellington Cordeiro",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wldcordeiro/perdido.git"
+  },
+  "keywords": [
+    "jss",
+    "plugin",
+    "grid",
+    "perdido",
+    "style",
+    "stylesheet"
+  ],
+  "engines": {},
+  "scripts": {
+    "all": "npm run lint && npm run build",
+    "test": "opener ./test/index.html",
+    "build": "npm run clean && npm run build:lib && npm run build:max && npm run build:min",
+    "clean": "rimraf ./lib/*",
+    "build:lib": "babel src --out-dir lib",
+    "build:max": "NODE_ENV=development webpack src/index.js dist/perdido.js",
+    "build:min": "NODE_ENV=production webpack src/index.js dist/perdido.min.js",
+    "lint": "eslint ./src",
+    "prepublish": "npm run all && git push --tags"
+  },
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.5",
+    "babel-core": "^5.6.20",
+    "babel-eslint": "^3.1.23",
+    "babel-loader": "^5.3.1",
+    "eslint": "^0.24.1",
+    "eslint-config-airbnb": "^0.0.6",
+    "eslint-config-jss": "^0.1.0",
+    "eslint-plugin-react": "^2.7.0",
+    "jss": ">=3.0.0 < 4.0.0",
+    "opener": "^1.4.1",
+    "qunitjs": "1.15.0",
+    "rimraf": "^2.4.3",
+    "webpack": "^1.11.0"
+  },
+  "peerDependencies": {
+    "jss": ">=3.0.0 < 4.0.0",
+    "jss-extend": ">=1.0.0 < 2.0.0",
+    "jss-nested": ">=1.0.0 < 2.0.0",
+    "jss-camel-case": ">=1.0.0 < 2.0.0",
+    "jss-default-unit": ">=2.0.0 < 3.0.0",
+    "jss-vendor-prefixer": ">=1.0.0 < 2.0.0",
+    "jss-props-sort": ">=1.0.0 < 2.0.0"
+  }
 }
