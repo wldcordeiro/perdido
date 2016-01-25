@@ -51,9 +51,7 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
       };
 
       if (cycle !== 0) {
-        style[`&:nth-child(${cycleVal}n)`] = {
-          marginRight: '0'
-        };
+        style[`&:nth-child(${cycleVal}n)`].marginRight = '0';
 
         style[`&:nth-child(${cycleVal}n + 1)`] = {
           clear: 'left'
