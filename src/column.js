@@ -7,7 +7,7 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
 
 
   if (columnVal !== 'none') {
-    if (cycle === 'auto' || flex === 'flex' || flex === 'no-flex') {
+    if (cycle === 'auto') {
       cycleVal = columnVal.split('/')[1];
     } else {
       cycleVal = cycle;
