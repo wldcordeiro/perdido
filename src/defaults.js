@@ -1,12 +1,15 @@
-export const GUTTER = '30';
+import reduceCssCalc from 'reduce-css-calc';
+
+export const GUTTER = '30px';
 export const FLEX = 'no-flex';
 export const CYCLE = 'auto';
 
 export function calcDimension(val, gutter) {
   if (gutter !== 0) {
-    return `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`;
+    return reduceCssCalc(
+      `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`, 10);
   } else {
-    return `calc(99.99% * ${val})`;
+    return reduceCssCalc(`calc(99.999999% * ${val})`, 10);
   }
 }
 

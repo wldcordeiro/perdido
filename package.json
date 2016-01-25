@@ -45,6 +45,7 @@
     "jss": ">=3.0.0 < 4.0.0",
     "opener": "^1.4.1",
     "qunitjs": "1.15.0",
+    "reduce-css-calc": "^1.2.0",
     "rimraf": "^2.4.3",
     "webpack": "^1.11.0"
   },
@@ -54,7 +55,6 @@
     "jss-nested": ">=1.0.0 < 2.0.0",
     "jss-camel-case": ">=1.0.0 < 2.0.0",
     "jss-default-unit": ">=2.0.0 < 3.0.0",
-    "jss-vendor-prefixer": ">=1.0.0 < 2.0.0",
-    "jss-props-sort": ">=1.0.0 < 2.0.0"
+    "jss-vendor-prefixer": ">=1.0.0 < 2.0.0"
   }
 }

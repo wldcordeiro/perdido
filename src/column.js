@@ -15,7 +15,7 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
     style = addFlex(flex, style);
 
     if (cycle !== 0) {
-      style[`&:nth(child(${cycleVal}n)`] = {
+      style[`&:nth-child(${cycleVal}n)`] = {
         marginRight: '0'
       };
     }
@@ -30,11 +30,11 @@ export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX)
     };
   } else {
     if (cycle !== 0) {
-      style[`&:nth(child(${cycleVal}n + 1)`] = {
+      style[`&:nth-child(${cycleVal}n + 1)`] = {
         clear: 'left'
       };
 
-      style[`&:nth(child(${cycleVal} + n)`] = {
+      style[`&:nth-child(${cycleVal}n)`] = {
         marginRight: '0'
       };
 
