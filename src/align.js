@@ -1,13 +1,13 @@
 import {FLEX} from './defaults';
 
-function alignProps(position, top, right, bottom, left, trans) {
+function alignProps(position, top, right, bottom, left, transform) {
   return {
     position,
     top,
     right,
     bottom,
     left,
-    trans
+    transform
   };
 }
 
