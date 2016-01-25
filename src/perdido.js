@@ -5,9 +5,9 @@ import {clearFix, edit} from './utils';
 
 export default class Perdido {
   constructor() {
-  this.column = column;
-  this.row = row;
-  this.flexContainer = flexContainer;
-  this.utils = {clearFix, edit};
+    this.column = column;
+    this.row = row;
+    this.flexContainer = flexContainer;
+    this.utils = {clearFix, edit};
   }
 }

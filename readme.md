@@ -23,13 +23,13 @@ Say we had a simple HTML block like a `section` with three inner `article`'s and
 
 ```js
 import jss from 'jss';
-import Perdido from 'perdido';
+import perdido from 'perdido';
 
 
 var sectionStyle = {
     section: {
         article: {
-            ...Perdido.column('1/3'),
+            ...perdido.column('1/3'),
         }
     }
 }
