@@ -1,6 +1,14 @@
 # Perdido JSS Grid System
 
-Perdido is a grid system for JSS, it is mostly a translation of the wonderful [Lost PostCSS Grid](https://github.com/peterramsing/lost). Perdido comes with a set of functions that you can use in your JSS to create fluid grids easily.
+Perdido is a grid system for JSS, it is mostly a translation of the wonderful [Lost PostCSS Grid](https://github.com/peterramsing/lost) (thus the name as "perdido" means lost in Portuguese.) Perdido comes with a set of functions that you can use in your JSS to create fluid grids easily.
+
+Perdido has requirements for the following JSS plugins, so make sure to install and initialize them.
+
+1. jss-extend
+2. jss-nested
+3. jss-camel-case
+4. jss-default-unit
+5. jss-vendor-prefixer
 
 ## Table of Contents
 
