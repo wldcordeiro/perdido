@@ -1,7 +1,7 @@
-import {GUTTER, FLEX, CYCLE, calcDimension, addFlex} from './defaults';
+import {calcDimension, addFlex} from './defaults';
 
 
-export default function column(columnVal, cycle=CYCLE, gutter=GUTTER, flex=FLEX) {
+export default function column(columnVal, cycle, gutter, flex) {
   let style = {},
     cycleVal = cycle;
 
