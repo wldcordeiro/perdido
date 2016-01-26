@@ -362,8 +362,83 @@ QUnit.module('Perdido FlexContainer', {
 testMethod('can support flex for row', perdido.flexContainer('row'), [
   'a {\n  display: flex;\n  flex-flow: row wrap;\n}'
 ]);
+
 testMethod('can support flex for column', perdido.flexContainer('column'), [
   'a {\n  display: flex;\n  flex-flow: column nowrap;\n}'
+]);
+
+// Masonry Column
+QUnit.module('Perdido Masonry Column', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+testMethod('can support masonry grid custom column', perdido.masonryColumn('60px'), [
+  'a {\n  float: left;\n  width: calc(99.99% * 60px - 30px);\n  margin-left: 15px;',
+  '  margin-right: 15px;\n}'
+]);
+
+testMethod('can support masonry grid no column', perdido.masonryColumn('0'), [
+  'a {\n  float: left;\n  width: calc(99.99% * 0 - 30px);\n  margin-left: 15px;',
+  '  margin-right: 15px;\n}'
+]);
+
+testMethod('can support masonry flexbox grid custom column', perdido.masonryColumn('60px', '30px', 'flex'), [
+  'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 60px - 30px);',
+  '  margin-left: 15px;\n  margin-right: 15px;\n}'
+]);
+
+testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('0', '30px', 'flex'), [
+  'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 0 - 30px);',
+  '  margin-left: 15px;\n  margin-right: 15px;\n}'
+]);
+
+// Masonry Wrap
+QUnit.module('Perdido Masonry Wrap', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+testMethod('can support creating a flexbox wrapper', perdido.masonryWrap('flex'), [
+  'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -15px;',
+  '  margin-right: -15px;\n}'
+]);
+
+testMethod('can support creating a non-flexbox wrapper', perdido.masonryWrap('no-flex'), [
+  'a {\n  *zoom: 1;\n  margin-left: -15px;\n  margin-right: -15px;\n}',
+  'a:before {\n  content: \'\';\n  display: table;\n}',
+  'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+]);
+
+testMethod('can support a custom gutter.', perdido.masonryWrap('flex', '60px'), [
+  'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -30px;',
+  '  margin-right: -30px;\n}'
 ]);
 
 // Move
@@ -510,14 +585,75 @@ QUnit.module('Perdido Utilities', {
   }
 });
 
-testMethod('can apply edit indicator', perdido.utils.edit, [
+testMethod('can support applying edit indicator', perdido.utils.edit, [
   'a {\n}',
   'a *:not(input):not(textarea):not(select) {',
   '  background-color: rgba(0, 0, 255, 0.1);\n}'
 ]);
 
-testMethod('can apply clearfix', perdido.utils.clearFix, [
+testMethod('can support applying clearfix', perdido.utils.clearFix, [
   'a {\n  *zoom: 1;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+]);
+
+// Waffle
+QUnit.module('Perdido Waffle', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+testMethod('can support a 3 column layout', perdido.waffle('1/3'), [
+  'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));',
+  '  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));\n}',
+  'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;',
+  '  margin-bottom: 30px;\n  clear: none;\n}',
+  'a:last-child {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
+  'a:nth-child(3n) {\n  margin-right: 0;\n  float: right;\n}',
+  'a:nth-child(3n + 1) {\n  clear: left;\n}',
+  'a:nth-last-child(-n + 3) {\n  margin-bottom: 0;\n}'
+]);
+
+testMethod('can support a custom cycle', perdido.waffle('2/4', 2), [
+  'a {\n  width: calc(99.99% * 2/4 - (30px - 30px * 2/4));',
+  '  height: calc(99.99% * 2/4 - (30px - 30px * 2/4));\n}',
+  'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;',
+  '  margin-bottom: 30px;\n  clear: none;\n}',
+  'a:last-child {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
+  'a:nth-child(2n) {\n  margin-right: 0;\n  float: right;\n}',
+  'a:nth-child(2n + 1) {\n  clear: left;\n}',
+  'a:nth-last-child(-n + 2) {\n  margin-bottom: 0;\n}'
+]);
+
+testMethod('can support a custom gutter', perdido.waffle('3/6', 2, '60px'), [
+  'a {\n  width: calc(99.99% * 3/6 - (60px - 60px * 3/6));',
+  '  height: calc(99.99% * 3/6 - (60px - 60px * 3/6));\n}',
+  'a:nth-child(n) {\n  float: left;\n  margin-right: 60px;',
+  '  margin-bottom: 60px;\n  clear: none;\n}',
+  'a:last-child {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
+  'a:nth-child(2n) {\n  margin-right: 0;\n  float: right;\n}',
+  'a:nth-child(2n + 1) {\n  clear: left;\n}',
+  'a:nth-last-child(-n + 2) {\n  margin-bottom: 0;\n}'
+]);
+
+testMethod('can support flexbox', perdido.waffle('2/5', 3, '0', 'flex'), [
+  'a {\n  flex: 0 0 auto;\n  width: calc(99.999999% * 2/5);',
+  '  height: calc(99.999999% * 2/5);\n}',
+  'a:nth-child(n) {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
+  'a:last-child {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
+  'a:nth-child(3n) {\n  margin-right: 0;\n  float: right;\n}',
+  'a:nth-last-child(-n + 3) {\n  margin-bottom: 0;\n}'
 ]);
