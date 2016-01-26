@@ -7,8 +7,6 @@ function testMethod(testName, method, testStrs) {
         extend: method
       }
     }, {named: false});
-    ok(sheet.rules.a);
-
     equal(sheet.toString(), testStrs.join('\n'));
   });
 }
@@ -152,6 +150,91 @@ QUnit.module('Perdido Align Flex', {
     jss.use(jssVendorPrefixer());
   }
 });
+
+testMethod('can support resetting alignment', perdido.align('reset', 'flex'), [
+  'a {\n  display: initial;\n}',
+  'a > * {\n  justify-content: inherit;\n  align-items: inherit;\n}'
+]);
+
+testMethod('can support aligning horizontally', perdido.align('horizontal', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: inherit;\n}'
+]);
+
+testMethod('can support aligning verticaly', perdido.align('vertical', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: inherit;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning top left', perdido.align('top-left', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-start;\n  align-items: flex-start;\n}'
+]);
+
+testMethod('can support aligning top center', perdido.align('top-center', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
+]);
+
+testMethod('can support aligning top', perdido.align('top', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
+]);
+
+testMethod('can support aligning top right', perdido.align('top-right', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-end;\n  align-items: flex-start;\n}'
+]);
+
+testMethod('can support aligning middle left', perdido.align('middle-left', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning left', perdido.align('left', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning middle center', perdido.align('middle-center', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning center', perdido.align('center', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning middle right', perdido.align('middle-right', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning right', perdido.align('right', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
+]);
+
+testMethod('can support aligning bottom left', perdido.align('bottom-left', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-start;\n  align-items: flex-end;\n}'
+]);
+
+testMethod('can support aligning bottom center', perdido.align('bottom-center', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
+]);
+
+testMethod('can support aligning bottom', perdido.align('bottom', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
+]);
+
+testMethod('can support aligning bottom right', perdido.align('bottom-right', 'flex'), [
+  'a {\n  display: flex;\n}',
+  'a > * {\n  justify-content: flex-end;\n  align-items: flex-end;\n}'
+]);
 
 // Center
 QUnit.module('Perdido Center', {
