@@ -30,3 +30,10 @@
 
 - Add test suite for 50% of the library.
 - Remove unnecessary dependency (reducing library size to 19.1kB uncompressed!)
+
+## 0.7.0 / 2016-01-26
+
+- Complete test suite for library
+- add `Perdido.masonryColumn(..)` to allow working with Masonry grids
+- add `Perdido.masonryWrap(..)` to allow working with Masonry grids
+- add `Perdido.waffle(..)` to allow creating waffle grids.
