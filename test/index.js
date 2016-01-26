@@ -262,7 +262,8 @@ testMethod('can support horizontal centering containers', perdido.center('980px'
 ]);
 
 testMethod('can support adding 30px padding', perdido.center('980px', '30px'), [
-  'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 30px;\n  padding-right: 30px;\n  *zoom: 1;\n}',
+  'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;',
+  '  padding-left: 30px;\n  padding-right: 30px;\n  *zoom: 1;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
@@ -363,6 +364,89 @@ testMethod('can support flex for row', perdido.flexContainer('row'), [
 ]);
 testMethod('can support flex for column', perdido.flexContainer('column'), [
   'a {\n  display: flex;\n  flex-flow: column nowrap;\n}'
+]);
+
+// Move
+QUnit.module('Perdido Move', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+testMethod('can support moving elements left', perdido.move('1/3'), [
+  'a {\n  position: relative;',
+  '  left: calc(99.99% * 1/3 - (30px - 30px * 1/3) + 30px);\n}'
+]);
+
+testMethod('can support moving elements right', perdido.move('-1/3'), [
+  'a {\n  position: relative;',
+  '  left: calc(99.99% * -1/3 - (30px - 30px * -1/3) + 30px);\n}'
+]);
+
+testMethod('can support moving elements up', perdido.move('1/3', 'column'), [
+  'a {\n  position: relative;',
+  '  top: calc(99.99% * 1/3 - (30px - 30px * 1/3) + 30px);\n}'
+]);
+
+testMethod('can support moving elements down', perdido.move('-1/3', 'column'), [
+  'a {\n  position: relative;',
+  '  top: calc(99.99% * -1/3 - (30px - 30px * -1/3) + 30px);\n}'
+]);
+
+testMethod('can support custom gutter', perdido.move('1/2', 'row', '60px'), [
+  'a {\n  position: relative;',
+  '  left: calc(99.99% * 1/2 - (60px - 60px * 1/2) + 60px);\n}'
+]);
+
+// Offset
+QUnit.module('Perdido Offset', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+testMethod('can support moving elements to the left', perdido.offset('1/3'), [
+  'a {\n  margin-right: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;\n}'
+]);
+
+testMethod('can support moving elements to the right', perdido.offset('-1/3'), [
+  'a {\n  margin-left: calc(99.99% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px) !important;\n}'
+]);
+
+testMethod('can support moving elements up', perdido.offset('1/3', 'column'), [
+  'a {\n  margin-bottom: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;\n}'
+]);
+
+testMethod('can support moving elements down', perdido.offset('-1/3', 'column'), [
+  'a {\n  margin-top: calc(99.99% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px) !important;\n}'
+]);
+
+testMethod('can support custom gutter', perdido.offset('1/2', 'row', '60px'), [
+  'a {\n  margin-right: calc(99.99% * 1/2 - (60px - 60px * 1/2) + (60px * 2)) !important;\n}'
 ]);
 
 // Row

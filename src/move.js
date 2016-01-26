@@ -1,6 +1,6 @@
 export default function move(moveVal, direction, gutter) {
   let style = {
-    position: relative
+    position: 'relative'
   };
 
   if (direction === 'column') {

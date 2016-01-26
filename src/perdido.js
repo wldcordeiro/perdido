@@ -36,7 +36,7 @@ export default class Perdido {
     return column(columnVal, cycle, gutter, flex);
   }
 
-  move(moveVal, direction, gutter=this.gutter) {
+  move(moveVal, direction=this.offsetDir, gutter=this.gutter) {
     return move(moveVal, direction, gutter);
   }
 
