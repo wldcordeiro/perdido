@@ -21,3 +21,7 @@
 ## 0.6.0 / 2016-01-25
 
 - Add a move method that allows source ordering changes.
+
+## 0.6.1 / 2016-01-25
+
+- Reorder the `create` method arguments so that it's easier to create a Perdido instance with only certain options overridden.

@@ -9,19 +9,19 @@ import * as utils from './utils';
 import {GUTTER, FLEX, CYCLE, OFFSET_DIR} from './defaults';
 
 export default class Perdido {
-  constructor(cycle=CYCLE, gutter=GUTTER, flex=FLEX, offsetDir=OFFSET_DIR) {
+  constructor(gutter=GUTTER, flex=FLEX, cycle=CYCLE, offsetDir=OFFSET_DIR) {
     // Set the default values.
-    this.cycle = cycle;
     this.gutter = gutter;
     this.flex = flex;
+    this.cycle = cycle;
     this.offsetDir = offsetDir;
 
     this.flexContainer = flexContainer;
     this.utils = utils;
   }
 
-  create(cycle=this.cycle, gutter=this.gutter, flex=this.flex, offsetDir=this.offsetDir) {
-    return new Perdido(cycle, gutter, flex, offsetDir);
+  create(gutter=this.gutter, flex=this.flex, cycle=this.cycle, offsetDir=this.offsetDir) {
+    return new Perdido(gutter, flex, cycle, offsetDir);
   }
 
   align(alignment, flex=this.flex) {
