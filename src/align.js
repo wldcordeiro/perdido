@@ -21,6 +21,7 @@ export default function align(alignment, flex) {
         'auto',
         'auto',
         'auto',
+        'auto',
         'translate(0, 0)'
       );
     } else {
