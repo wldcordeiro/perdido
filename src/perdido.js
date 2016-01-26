@@ -22,7 +22,7 @@ export default class Perdido {
     this.utils = utils;
   }
 
-  create(gutter=this.gutter, flex=this.flex, cycle=this.cycle, offsetDir=this.offsetDir) {
+  create(gutter=GUTTER, flex=FLEX, cycle=CYCLE, offsetDir=OFFSET_DIR) {
     return new Perdido(gutter, flex, cycle, offsetDir);
   }
 
