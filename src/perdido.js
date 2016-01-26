@@ -2,9 +2,10 @@ import align from './align';
 import center from './center';
 import column from './column';
 import flexContainer from './flex-container';
-import row from './row';
+import move from './move';
 import offset from './offset';
-import {clearFix, edit} from './utils';
+import row from './row';
+import * as utils from './utils';
 import {GUTTER, FLEX, CYCLE, OFFSET_DIR} from './defaults';
 
 export default class Perdido {
@@ -16,10 +17,10 @@ export default class Perdido {
     this.offsetDir = offsetDir;
 
     this.flexContainer = flexContainer;
-    this.utils = {clearFix, edit};
+    this.utils = utils;
   }
 
-  create(cycle=CYCLE, gutter=GUTTER, flex=FLEX, offsetDir=OFFSET_DIR) {
+  create(cycle=this.cycle, gutter=this.gutter, flex=this.flex, offsetDir=this.offsetDir) {
     return new Perdido(cycle, gutter, flex, offsetDir);
   }
 
@@ -35,11 +36,15 @@ export default class Perdido {
     return column(columnVal, cycle, gutter, flex);
   }
 
-  row(rowVal, gutter=this.gutter, flex=this.flex) {
-    return row(rowVal, gutter, flex);
+  move(moveVal, direction, gutter=this.gutter) {
+    return move(moveVal, direction, gutter);
   }
 
   offset(offsetVal, direction=this.offsetDir, gutter=this.gutter) {
     return offset(offsetVal, direction, gutter);
+  }
+
+  row(rowVal, gutter=this.gutter, flex=this.flex) {
+    return row(rowVal, gutter, flex);
   }
 }

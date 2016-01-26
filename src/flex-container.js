@@ -4,11 +4,10 @@ export default function flexContainer(direction) {
   };
 
   if (direction === 'column') {
-    style['flex-flow'] = 'column nowrap';
+    style.flexFlow = 'column nowrap';
   } else {
-    style['flex-flow'] = 'row wrap';
+    style.flexFlow = 'row wrap';
   }
-
 
   return style;
 }

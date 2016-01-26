@@ -1,7 +1,4 @@
-import {FLEX} from './defaults';
-
-
-export default function center(maxWidth, padding, flex=FLEX) {
+export default function center(maxWidth, padding, flex) {
   let style = {
     maxWidth,
     marginLeft: 'auto',

@@ -8,9 +8,9 @@ export const OFFSET_DIR = 'row';
 export function calcDimension(val, gutter) {
   if (gutter !== 0) {
     return reduceCssCalc(
-      `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`, 10);
+      `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`, 5);
   } else {
-    return reduceCssCalc(`calc(99.999999% * ${val})`, 10);
+    return reduceCssCalc(`calc(99.999999% * ${val})`, 5);
   }
 }
 

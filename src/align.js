@@ -1,5 +1,3 @@
-import {FLEX} from './defaults';
-
 function alignProps(position, top, right, bottom, left, transform) {
   return {
     position,
@@ -11,7 +9,7 @@ function alignProps(position, top, right, bottom, left, transform) {
   };
 }
 
-export default function align(alignment, flex=FLEX) {
+export default function align(alignment, flex) {
   var style = {};
 
   if (flex !== 'flex') {
