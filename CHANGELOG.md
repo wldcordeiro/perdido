@@ -25,3 +25,8 @@
 ## 0.6.1 / 2016-01-25
 
 - Reorder the `create` method arguments so that it's easier to create a Perdido instance with only certain options overridden.
+
+## 0.6.2 / 2016-01-25
+
+- Add test suite for 50% of the library.
+- Remove unnecessary dependency (reducing library size to 19.1kB uncompressed!)
