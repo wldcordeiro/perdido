@@ -19,6 +19,10 @@ export default class Perdido {
     this.utils = {clearFix, edit};
   }
 
+  create(cycle=CYCLE, gutter=GUTTER, flex=FLEX, offsetDir=OFFSET_DIR) {
+    return new Perdido(cycle, gutter, flex, offsetDir);
+  }
+
   align(alignment, flex=this.flex) {
     return align(alignment, flex);
   }
