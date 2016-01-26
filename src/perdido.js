@@ -2,6 +2,7 @@ import align from './align';
 import center from './center';
 import column from './column';
 import flexContainer from './flex-container';
+import * as masonry from './masonry';
 import move from './move';
 import offset from './offset';
 import row from './row';
@@ -17,6 +18,7 @@ export default class Perdido {
     this.offsetDir = offsetDir;
 
     this.flexContainer = flexContainer;
+    this.masonry = masonry;
     this.utils = utils;
   }
 
