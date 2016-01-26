@@ -1,7 +1,7 @@
-export function column(columnVal, gutter, flex) {
+export function masonryColumn(columnVal, gutter, flex) {
 
 }
 
-export function wrap(flex, gutter) {
+export function masonryWrap(flex, gutter) {
 
 }

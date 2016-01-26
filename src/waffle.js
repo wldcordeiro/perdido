@@ -1,3 +1,3 @@
-export default function waffle() {
+export default function waffle(waffleVal, cycle, gutter, flex) {
 
 }
