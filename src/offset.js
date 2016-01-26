@@ -1,5 +1,3 @@
-import reduceCssCalc from 'reduce-css-calc';
-
 export default function offset(offsetVal, direction, gutter) {
   let style = {},
       numerator = offsetVal.split('/')[0];
@@ -7,27 +5,17 @@ export default function offset(offsetVal, direction, gutter) {
   if (direction === 'column') {
     if (numerator > 0) {
       if (gutter !== '0') {
-        style.marginBottom = reduceCssCalc(
-          `calc(99.99% * ${offsetVal} - (${gutter} - ${gutter} * ${offsetVal}) + (${gutter} * 2)) !important`,
-          10
-        );
+        style.marginBottom =
+          `calc(99.99% * ${offsetVal} - (${gutter} - ${gutter} * ${offsetVal}) + (${gutter} * 2)) !important`;
       } else {
-        style.marginBottom = reduceCssCalc(
-          `calc(99.999999% * ${offsetVal}) !important`,
-          10
-        );
+        style.marginBottom = `calc(99.999999% * ${offsetVal}) !important`;
       }
     } else if (numerator < 0) {
       if (gutter !== '0') {
-        style.marginTop = reduceCssCalc(
-          `calc(99.99% * (${offsetVal} * -1) - (${gutter} - ${gutter} * (${offsetVal} * -1)) + ${gutter}) !important`,
-          10
-        );
+        style.marginTop =
+        `calc(99.99% * (${offsetVal} * -1) - (${gutter} - ${gutter} * (${offsetVal} * -1)) + ${gutter}) !important`;
       } else {
-        style.marginTop = reduceCssCalc(
-          `calc(99.999999% * ${offsetVal}) !important`,
-          10
-        );
+        style.marginTop = `calc(99.999999% * ${offsetVal}) !important`;
       }
     } else {
       style.marginTop = '0 !important';
@@ -36,27 +24,17 @@ export default function offset(offsetVal, direction, gutter) {
   } else {
     if (numerator > 0) {
       if (gutter !== '0') {
-        style.marginRight = reduceCssCalc(
-          `calc(99.99% * ${offsetVal} - (${gutter} - ${gutter} * ${offsetVal}) + (${gutter} * 2)) !important`,
-          10
-        );
+        style.marginRight =
+          `calc(99.99% * ${offsetVal} - (${gutter} - ${gutter} * ${offsetVal}) + (${gutter} * 2)) !important`;
       } else {
-        style.marginRight = reduceCssCalc(
-          `calc(99.999999% * ${offsetVal}) !important`,
-          10
-        );
+        style.marginRight = `calc(99.999999% * ${offsetVal}) !important`;
       }
     } else if (numerator < 0) {
       if (offsetVal !== '0') {
-        style.marginLeft = reduceCssCalc(
-          `calc(99.99% * (${offsetVal} * -1) - (${gutter} - ${gutter} * (${offsetVal} * -1)) + ${gutter}) !important`,
-          10
-        );
+        style.marginLeft =
+          `calc(99.99% * (${offsetVal} * -1) - (${gutter} - ${gutter} * (${offsetVal} * -1)) + ${gutter}) !important`;
       } else {
-        style.marginLeft = reduceCssCalc(
-          `calc(99.999999% * ${offsetVal}) !important`,
-          10
-        );
+        style.marginLeft = `calc(99.999999% * ${offsetVal}) !important`;
       }
     } else {
       style.marginLeft = '0 !important';
