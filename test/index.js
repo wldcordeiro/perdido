@@ -193,6 +193,53 @@ test('can support none rule', function() {
   equal(sheet.toString(), testStr);
 });
 
+// Flex Container
+QUnit.module('Perdido FlexContainer', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+test('can support flex for row', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.flexContainer('row')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  display: flex;\n  flex-flow: row wrap;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support flex for column', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.flexContainer('column')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  display: flex;\n  flex-flow: column nowrap;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
 // Row
 
 QUnit.module('Perdido Row', {
@@ -269,6 +316,57 @@ test('can support flexbox', function() {
   var testStr = [
     'a {\n  width: 100%;\n  flex: 0 0 auto;\n  height: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  margin-bottom: 60px;\n}',
     'a:last-child {\n  margin-bottom: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+// Utils
+QUnit.module('Perdido Utilities', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+test('can apply edit indicator', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.utils.edit
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n}',
+    'a *:not(input):not(textarea):not(select) {',
+    '  background-color: rgba(0, 0, 255, 0.1);\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can apply clearfix', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.utils.clearFix
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  *zoom: 1;\n}',
+    'a:before {\n  content: \'\';\n  display: table;\n}',
+    'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
   ].join('\n');
   equal(sheet.toString(), testStr);
 });
