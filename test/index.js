@@ -432,7 +432,7 @@ testMethod('can support creating a flexbox wrapper', perdido.masonryWrap('flex')
 
 testMethod('can support creating a non-flexbox wrapper', perdido.masonryWrap('no-flex'), [
   'a {\n  *zoom: 1;\n  margin-left: -15px;\n  margin-right: -15px;\n}',
-  'a:before {\n  content: \'\';\n  display: table;\n}' +
+  'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
