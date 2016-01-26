@@ -31,9 +31,7 @@ export default function column(columnVal, cycle, gutter, flex) {
       };
 
       if (cycle !== 0) {
-        style[`&:nth-child(${cycleVal}n)`] = {
-          marginRight: '0'
-        };
+        style[`&:nth-child(${cycleVal}n)`].marginRight = '0';
       }
     } else {
       style['&:nth-child(n)'] = {
@@ -75,7 +73,7 @@ export default function column(columnVal, cycle, gutter, flex) {
       width: 'auto'
     };
 
-    style['&:nth-child(1n +1)'] = {
+    style['&:nth-child(1n + 1)'] = {
       float: 'none',
       clear: 'none',
       marginRight: '0',

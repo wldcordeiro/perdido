@@ -1,110 +1,372 @@
 'use strict';
 
-QUnit.module('Perdido JSS Grid plugin', {
+// Center
+QUnit.module('Perdido Center', {
   setup() {
-    var row = Perdido.row,
-        column = Perdido.column;
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
   }
 });
 
-// test('nesting with space', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       float: 'left',
-//       '& b': {float: 'left'}
-//     }
-//   }, {named: false})
-//   ok(sheet.rules.a)
-//   ok(sheet.rules['a b'])
-//   equal(sheet.toString(), 'a {\n  float: left;\n}\na b {\n  float: left;\n}')
-// })
+test('can support horizontal centering containers', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.center('980px')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
 
-// test('nesting without space', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       float: 'left',
-//       '&b': {float: 'left'}
-//     }
-//   }, {named: false})
-//   ok(sheet.rules.a)
-//   ok(sheet.rules['ab'])
-//   equal(sheet.toString(), 'a {\n  float: left;\n}\nab {\n  float: left;\n}')
-// })
+  var testStr = [
+    'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n  *zoom: 1;\n}',
+    'a:before {\n  content: \'\';\n  display: table;\n}',
+    'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
 
-// test('multi nesting', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       float: 'left',
-//       '&b': {float: 'left'},
-//       '& c': {float: 'left'}
-//     }
-//   }, {named: false})
-//   ok(sheet.rules.a)
-//   ok(sheet.rules.ab)
-//   ok(sheet.rules['a c'])
-//   equal(sheet.toString(), 'a {\n  float: left;\n}\nab {\n  float: left;\n}\na c {\n  float: left;\n}')
-// })
+test('can support adding 30px padding', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.center('980px', '30px')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
 
-// test('multi nesting in one selector', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       float: 'left',
-//       '&b, &c': {float: 'left'}
-//     }
-//   }, {named: false})
-//   ok(sheet.rules.a)
-//   ok(sheet.rules['ab, ac'])
-//   equal(sheet.toString(), 'a {\n  float: left;\n}\nab, ac {\n  float: left;\n}')
-// })
+  var testStr = [
+    'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 30px;\n  padding-right: 30px;\n  *zoom: 1;\n}',
+    'a:before {\n  content: \'\';\n  display: table;\n}',
+    'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
 
+test('can support flexbox', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.center('1140px', '30px', 'flex')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
 
-// test('deep nesting', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       '&b': {
-//         '&c': {
-//           float: 'left'
-//         }
-//       }
-//     }
-//   }, {named: false})
-//   ok(sheet.rules.a)
-//   ok(sheet.rules.ab)
-//   ok(sheet.rules.abc)
-//   equal(sheet.toString(), 'a {\n}\nab {\n}\nabc {\n  float: left;\n}')
-// })
+  var testStr = [
+    'a {\n  max-width: 1140px;\n  margin-left: auto;\n  margin-right: auto;',
+    '  padding-left: 30px;\n  padding-right: 30px;\n  display: flex;',
+    '  flex-flow: row wrap;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
 
-// test('addRules', function () {
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       height: '1px'
-//     }
-//   }, {named: false})
+// Column
+QUnit.module('Perdido Column', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
 
-//   sheet.addRules({
-//     b: {
-//       height: '2px',
-//       '& c': {
-//         height: '3px'
-//       }
-//     }
-//   })
-//   sheet.attach()
-//   equal(sheet.element.sheet.rules[0].cssText, 'a { height: 1px; }')
-//   equal(sheet.element.sheet.rules[1].cssText, 'b { height: 2px; }')
-//   equal(sheet.element.sheet.rules[2].cssText, 'b c { height: 3px; }')
-//   sheet.detach()
-// })
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
 
-// test('nesting in a namespaced rule', function () {
-//   jss.uid.reset()
-//   var sheet = jss.createStyleSheet({
-//     a: {
-//       float: 'left',
-//       '& b': {float: 'left'}
-//     }
-//   })
-//   ok(sheet.rules['.jss-0-0'])
-//   ok(sheet.rules['.jss-0-0 b'])
-//   equal(sheet.toString(), '.jss-0-0 {\n  float: left;\n}\n.jss-0-0 b {\n  float: left;\n}')
-// })
+test('can support 3 column layout', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('1/3')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));\n}',
+    'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;\n  clear: none;\n}',
+    'a:last-child {\n  margin-right: 0;\n}',
+    'a:nth-child(3n) {\n  float: right;\n  margin-right: 0;\n}',
+    'a:nth-child(3n + 1) {\n  clear: left;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support 2/5 column layout', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('2/5')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: calc(99.99% * 2/5 - (30px - 30px * 2/5));\n}',
+    'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;\n  clear: none;\n}',
+    'a:last-child {\n  margin-right: 0;\n}',
+    'a:nth-child(5n) {\n  float: right;\n  margin-right: 0;\n}',
+    'a:nth-child(5n + 1) {\n  clear: left;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support custom cycle', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('2/4', 2)
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: calc(99.99% * 2/4 - (30px - 30px * 2/4));\n}',
+    'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;\n  clear: none;\n}',
+    'a:last-child {\n  margin-right: 0;\n}',
+    'a:nth-child(2n) {\n  float: right;\n  margin-right: 0;\n}',
+    'a:nth-child(2n + 1) {\n  clear: left;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support no gutter', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('2/5', 3, '0')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: calc(99.999999% * 2/5);\n}',
+    'a:nth-child(n) {\n  float: left;\n  margin-right: 0;\n  clear: none;\n}',
+    'a:last-child {\n  margin-right: 0;\n}',
+    'a:nth-child(3n) {\n  float: right;\n  margin-right: 0;\n}',
+    'a:nth-child(3n + 1) {\n  clear: left;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support flexbox', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('2/6', 3, '60px', 'flex')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  flex: 0 0 auto;\n}',
+    'a:nth-child(n) {\n  margin-right: 60px;\n}',
+    'a:last-child {\n  margin-right: 0;\n}',
+    'a:nth-child(3n) {\n  float: right;\n  margin-right: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support none rule', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.column('none')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: auto;\n}',
+    'a:last-child {\n  float: none;\n  clear: none;\n  margin-right: 0;\n  width: auto;\n}',
+    'a:nth-child(n) {\n  float: none;\n  clear: none;\n  margin-right: 0;\n  width: auto;\n}',
+    'a:nth-child(1n + 1) {\n  float: none;\n  clear: none;\n  margin-right: 0;\n  width: auto;\n}',
+    'a:nth-child(1n) {\n  float: none;\n  clear: none;\n  margin-right: 0;\n  width: auto;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+// Flex Container
+QUnit.module('Perdido FlexContainer', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+test('can support flex for row', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.flexContainer('row')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  display: flex;\n  flex-flow: row wrap;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support flex for column', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.flexContainer('column')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  display: flex;\n  flex-flow: column nowrap;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+// Row
+
+QUnit.module('Perdido Row', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+test('can support 3 row layout', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.row('1/3')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: 100%;\n  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));\n  margin-bottom: 30px;\n}',
+    'a:last-child {\n  margin-bottom: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support 2/5 row layout', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.row('2/5')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: 100%;\n  height: calc(99.99% * 2/5 - (30px - 30px * 2/5));\n  margin-bottom: 30px;\n}',
+    'a:last-child {\n  margin-bottom: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support no gutter', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.row('2/5', '0')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: 100%;\n  height: calc(99.999999% * 2/5);\n  margin-bottom: 0;\n}',
+    'a:last-child {\n  margin-bottom: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can support flexbox', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.row('2/6', '60px', 'flex')
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  width: 100%;\n  flex: 0 0 auto;\n  height: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  margin-bottom: 60px;\n}',
+    'a:last-child {\n  margin-bottom: 0;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+// Utils
+QUnit.module('Perdido Utilities', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  }
+});
+
+test('can apply edit indicator', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.utils.edit
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n}',
+    'a *:not(input):not(textarea):not(select) {',
+    '  background-color: rgba(0, 0, 255, 0.1);\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});
+
+test('can apply clearfix', function() {
+  var sheet = jss.createStyleSheet({
+    a: {
+      extend: perdido.utils.clearFix
+    }
+  }, {named: false});
+  ok(sheet.rules.a);
+
+  var testStr = [
+    'a {\n  *zoom: 1;\n}',
+    'a:before {\n  content: \'\';\n  display: table;\n}',
+    'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+  ].join('\n');
+  equal(sheet.toString(), testStr);
+});

@@ -13,14 +13,15 @@ export default function center(maxWidth, padding, flex) {
   if (flex === 'no-flex') {
     style['*zoom'] = '1';
 
-    style['&:after'] = {
-      content: '""',
+    style['&:before'] = {
+      content: "''",
       display: 'table'
     };
 
-    style['&:before'] = {
-      content: '""',
-      display: 'table'
+    style['&:after'] = {
+      content: "''",
+      display: 'table',
+      clear: 'both'
     };
   } else {
     style.display = 'flex';
