@@ -1,7 +1,6 @@
 import reduceCssCalc from 'reduce-css-calc';
-import {GUTTER, OFFSET_DIR} from './defaults';
 
-export default function offset(offsetVal, direction=OFFSET_DIR, gutter=GUTTER) {
+export default function offset(offsetVal, direction, gutter) {
   let style = {},
       numerator = offsetVal.split('/')[0];
 

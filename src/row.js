@@ -1,6 +1,6 @@
-import {GUTTER, FLEX, calcDimension, addFlex} from './defaults';
+import {calcDimension, addFlex} from './defaults';
 
-export default function row(rowVal, gutter=GUTTER, flex=FLEX) {
+export default function row(rowVal, gutter, flex) {
   let style = {
     width: '100%'
   };
