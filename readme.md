@@ -26,7 +26,7 @@ Perdido has requirements for the following JSS plugins, so make sure to install 
     10. [Flexbox Grids](#flexbox-grids)
     11. [Masonry Support](#masonry-support)
 3. [API](#api)
-4. [Options][#options]
+4. [Options](#options)
 5. [Contributing](#contributing)
 6. [Thanks](#thanks)
 
@@ -177,7 +177,7 @@ Using this knowledge we can create really flexible layouts with varying widths l
 }
 ```
 
-The concept of cycle is extremely important to Lost and what sets good Perdido developers apart from great Perdido developers. Really try to grok this!
+The concept of cycle is extremely important to Perdido and what sets good Perdido developers apart from great Perdido developers. Really try to grok this!
 
 ### Nesting
 
