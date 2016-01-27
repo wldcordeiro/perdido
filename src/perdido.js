@@ -1,5 +1,3 @@
-/* @flow */
-
 import align from './align';
 import center from './center';
 import column from './column';
@@ -20,10 +18,10 @@ import {GUTTER, FLEX, CYCLE, OFFSET_DIR} from './defaults';
  */
 export default class Perdido {
   constructor(
-      gutter: string = GUTTER,
-      flex: boolean = FLEX,
-      cycle: number = CYCLE,
-      offsetDir:string = OFFSET_DIR) {
+      gutter = GUTTER,
+      flex = FLEX,
+      cycle = CYCLE,
+      offsetDir = OFFSET_DIR) {
     // Set the default values.
     this.gutter = gutter;
     this.flex = flex;
@@ -42,10 +40,10 @@ export default class Perdido {
    * @api public
    */
   create(
-      gutter: string = GUTTER,
-      flex: boolean = FLEX,
-      cycle: number = CYCLE,
-      offsetDir: string = OFFSET_DIR) {
+      gutter = GUTTER,
+      flex = FLEX,
+      cycle = CYCLE,
+      offsetDir = OFFSET_DIR) {
     return new Perdido(gutter, flex, cycle, offsetDir);
   }
 
@@ -55,7 +53,7 @@ export default class Perdido {
    * @see align
    * @api public
    */
-  align(alignment: string, flex: boolean = FLEX) {
+  align(alignment, flex = FLEX) {
     return align(alignment, flex);
   }
 
@@ -65,10 +63,7 @@ export default class Perdido {
    * @see center
    * @api public
    */
-  center(
-      maxWidth: string,
-      padding: string,
-      flex: boolean = FLEX) {
+  center(maxWidth, padding, flex = FLEX) {
     return center(maxWidth, padding, flex);
   }
 
@@ -78,11 +73,7 @@ export default class Perdido {
    * @see column
    * @api public
    */
-  column(
-      columnVal: string,
-      cycle: number = CYCLE,
-      gutter: string = GUTTER,
-      flex: boolean = FLEX) {
+  column(columnVal, cycle = CYCLE, gutter = GUTTER, flex = FLEX) {
     return column(columnVal, cycle, gutter, flex);
   }
 
@@ -92,10 +83,7 @@ export default class Perdido {
    * @see masonry.masonryColumn
    * @api public
    */
-  masonryColumn(
-      columnVal: string,
-      gutter: string = GUTTER,
-      flex: boolean = FLEX) {
+  masonryColumn(columnVal, gutter = GUTTER, flex = FLEX) {
     return masonryColumn(columnVal, gutter, flex);
   }
 
@@ -106,7 +94,7 @@ export default class Perdido {
    * @see masonry.masonryWrap
    * @api public
    */
-  masonryWrap(flex: boolean = FLEX, gutter: string = GUTTER) {
+  masonryWrap(flex = FLEX, gutter = GUTTER) {
     return masonryWrap(flex, gutter);
   }
 
@@ -116,10 +104,7 @@ export default class Perdido {
    * @see move
    * @api public
    */
-  move(
-      moveVal: string,
-      direction: string = OFFSET_DIR,
-      gutter: string = GUTTER) {
+  move(moveVal, direction = OFFSET_DIR, gutter = GUTTER) {
     return move(moveVal, direction, gutter);
   }
 
@@ -129,10 +114,7 @@ export default class Perdido {
    * @see offset
    * @api public
    */
-  offset(
-      offsetVal: string,
-      direction: string = OFFSET_DIR,
-      gutter: string = GUTTER) {
+  offset(offsetVal, direction = OFFSET_DIR, gutter = GUTTER) {
     return offset(offsetVal, direction, gutter);
   }
 
@@ -142,10 +124,7 @@ export default class Perdido {
    * @see row
    * @api public
    */
-  row(
-      rowVal: string,
-      gutter: string = GUTTER,
-      flex: boolean = FLEX) {
+  row(rowVal, gutter = GUTTER, flex = FLEX) {
     return row(rowVal, gutter, flex);
   }
 
@@ -155,11 +134,7 @@ export default class Perdido {
    * @see waffle
    * @api public
    */
-  waffle(
-      waffleVal: string,
-      cycle: number = CYCLE,
-      gutter: string = GUTTER,
-      flex: boolean = FLEX) {
+  waffle(waffleVal, cycle = CYCLE, gutter = GUTTER, flex = FLEX) {
     return waffle(waffleVal, cycle, gutter, flex);
   }
 }

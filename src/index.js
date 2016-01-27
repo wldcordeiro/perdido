@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Fluid Grid Systems in JSS, Perdido, a translation of Lost.
  *

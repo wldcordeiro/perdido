@@ -10,12 +10,27 @@ Perdido has requirements for the following JSS plugins, so make sure to install 
 4. jss-default-unit
 5. jss-vendor-prefixer
 
+
 ## Table of Contents
 
-1. Example
-2. API
-3. Options
-4. Contributing
+1. [Example](#example)
+2. [Guide](#guide)
+    1. [Basic Columns](#basic-columns)
+    2. [Centering Elements](#centering-elements)
+    3. [Controlling Cycle](#controlling-cycle)
+    4. [Nesting](#nesting)
+    5. [Offsetting Elements](#offsetting-elements)
+    6. [Alignment](#alignment)
+    7. [Edit Mode](#edit-mode)
+    8. [Vertical Grids](#vertical-grids)
+    9. [Waffle Grids](#waffle-grids)
+    10. [Flexbox Grids](#flexbox-grids)
+    11. [Masonry Support](#masonry-support)
+3. [API](#api)
+4. [Options][#options]
+5. [Contributing](#contributing)
+6. [Thanks](#thanks)
+
 
 ## Example
 
@@ -45,6 +60,32 @@ var sectionStyle = {
 jss.createStyleSheet(sectionStyle, {named: false}).attach();
 ```
 
+
+## Guide
+
+### Basic Columns
+
+### Centering Elements
+
+### Controlling Cycle
+
+### Nesting
+
+### Offsetting Elements
+
+### Alignment
+
+### Edit Mode
+
+### Vertical Grids
+
+### Waffle Grids
+
+### Flexbox Grids
+
+### Masonry Support
+
+
 ## API
 
 ### Perdido.align(..)
@@ -71,12 +112,16 @@ jss.createStyleSheet(sectionStyle, {named: false}).attach();
 
 ### Perdido.waffle(..)
 
+
 ## Options
 
 Perdido comes with some default settings that can be changed to your liking.
 
 ```js
+// ES6/2015
+import {create} from 'perdido';
 
+const perdido = create('20px', true, 3, 'column');
 ```
 
 * `Perdido.gutter` accepts any unit value (default: '30px')
@@ -87,6 +132,10 @@ Perdido comes with some default settings that can be changed to your liking.
 
 * `Perdido.offsetDir` accepts a string of either 'row' or 'column' (default: row)
 
+
 ## Contributing
 
+
 ## Thanks
+
+* The [Lost CSS Grid team](https://github.com/peterramsing/lost) for making an awesome grid for me to base this on.

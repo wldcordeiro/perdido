@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.masonryColumn: Creates a column for working with JS masonry
  *                        libraries like Isotope. Assigns a margin to
@@ -11,12 +9,9 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a masonry grid column.
  */
-export function masonryColumn(
-    columnVal: string,
-    gutter: string,
-    flex: bool): Object {
-  let style: Object = {},
-    unit: ?string = gutter.match(/\D/g).join('');
+export function masonryColumn(columnVal, gutter, flex) {
+  let style = {},
+    unit = gutter.match(/\D/g).join('');
 
   if (flex === true) {
     style.flex = '0 0 auto';
@@ -47,8 +42,8 @@ export function masonryColumn(
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a masonry grid wrapping element.
  */
-export function masonryWrap(flex: bool, gutter: string): Object {
-  let style: Object = {};
+export function masonryWrap(flex, gutter) {
+  let style = {};
   if (flex === false) {
     style['&:before'] = {
       content: "''",

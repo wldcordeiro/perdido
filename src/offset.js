@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.offset: Margin to the left, right, bottom, or top, of an element
  * depending on if the fraction passed is positive or negative. It works for
@@ -13,10 +11,7 @@
  * @return {object}           An object containing the valid JSS rules and
  *                            values to offset elements.
  */
-export default function offset(
-    offsetVal: string,
-    direction: string,
-    gutter: string): Object {
+export default function offset(offsetVal, direction, gutter) {
   let style = {},
     numerator = parseInt(offsetVal.split('/')[0], 10);
 

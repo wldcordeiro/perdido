@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.flexContainer: Creates a Flexbox container.
  *
@@ -9,8 +7,8 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a flexbox container.
  */
-export default function flexContainer(direction: string): Object {
-  let style: Object = {
+export default function flexContainer(direction) {
+  let style = {
     display: 'flex',
   };
 

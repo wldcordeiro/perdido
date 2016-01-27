@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.column: Creates a column that is a fraction of the size of its
  * containing element's width with a gutter.
@@ -17,10 +15,9 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a column.
  */
-export default function column(columnVal: string, cycle: number,
-                               gutter: string, flex: boolean): Object {
-  let style: Object = {},
-    cycleVal: number = cycle;
+export default function column(columnVal, cycle, gutter, flex) {
+  let style = {},
+    cycleVal = cycle;
 
 
   if (columnVal !== 'none') {

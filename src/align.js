@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * alignProps: Simple helper function that returns the appropriate JSON
  *             object for the style block.
@@ -13,13 +11,7 @@
  * @return {object}           An object containing the valid JSS rules and
  *                            values.
  */
-function alignProps(
-    position: string,
-    top: string,
-    right: string,
-    bottom: string,
-    left: string,
-    transform: string): Object {
+function alignProps(position, top, right, bottom, left, transform) {
   return {
     position,
     top,
@@ -42,8 +34,8 @@ function alignProps(
  *                  nested elements.
  */
 
-export default function align(alignment: string, flex: boolean): Object {
-  let style: Object = {};
+export default function align(alignment, flex) {
+  let style = {};
 
   if (flex === false) {
     if (alignment === 'reset') {

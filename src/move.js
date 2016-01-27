@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.move: Source ordering. Shift elements left, right, up, or down, by
  *               their left or top position by passing a positive or negative
@@ -12,11 +10,8 @@
  * @return {object} an object containing the valid JSS rules and values to shift
  *                  an element around the grid.
  */
-export default function move(
-    moveVal: string,
-    direction: string,
-    gutter: string): Object {
-  let style: Object = {
+export default function move(moveVal, direction, gutter) {
+  let style = {
     position: 'relative',
   };
 

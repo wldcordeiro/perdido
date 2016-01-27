@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.center: Horizontally center a containing element and apply padding
  * to it.
@@ -13,9 +11,8 @@
  */
 
 
-export default function center(maxWidth: string, padding: string,
-                               flex: bool): Object {
-  let style: Object = {
+export default function center(maxWidth, padding, flex) {
+  let style = {
     maxWidth,
     marginLeft: 'auto',
     marginRight: 'auto',

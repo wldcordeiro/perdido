@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.row: Creates a row that is a fraction of the size of its containing
  *              element's height with a gutter.
@@ -10,11 +8,8 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a row.
  */
-export default function row(
-    rowVal: string,
-    gutter: string,
-    flex: boolean): Object {
-  let style: Object = {
+export default function row(rowVal, gutter, flex) {
+  let style = {
     width: '100%',
   };
 

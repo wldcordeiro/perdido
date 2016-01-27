@@ -1,11 +1,9 @@
-/* @flow */
-
 /**
  * Perdido.utils.clearFix: An object containing the styles necessary to apply
  *                         a clear fix to an element.
  * @type {Object}
  */
-export const clearFix: Object = {
+export const clearFix = {
   '*zoom': '1',
 
   '&:before': {
@@ -25,7 +23,7 @@ export const clearFix: Object = {
  *                     "debug" view.
  * @type {Object}
  */
-export const edit: Object = {
+export const edit = {
   '& *:not(input):not(textarea):not(select)': {
     backgroundColor: 'rgba(0, 0, 255, 0.1)',
   },

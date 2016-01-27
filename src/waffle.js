@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Perdido.waffle: Creates a block that is a fraction of the size of its
  *                 containing element's width AND height with a gutter on
@@ -17,11 +15,7 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a waffle grid.
  */
-export default function waffle(
-    waffleVal: string,
-    cycle: number,
-    gutter: string,
-    flex: boolean): Object {
+export default function waffle(waffleVal, cycle, gutter, flex) {
   let style = {},
     cycleVal;
 

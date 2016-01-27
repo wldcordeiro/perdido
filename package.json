@@ -27,7 +27,7 @@
     "build:lib": "babel src --out-dir lib",
     "build:max": "NODE_ENV=development webpack src/index.js dist/perdido.js",
     "build:min": "NODE_ENV=production webpack src/index.js dist/perdido.min.js",
-    "lint": "eslint ./src; flow",
+    "lint": "eslint ./src",
     "prepublish": "npm run all && git push --tags"
   },
   "license": "MIT",
@@ -42,7 +42,6 @@
     "eslint-config-airbnb": "0.1.0",
     "eslint-config-jss": "0.2.0",
     "eslint-plugin-react": "^3.6.3",
-    "flow-bin": "^0.20.1",
     "jss": ">=3.0.0 < 4.0.0",
     "jss-camel-case": ">=1.0.0 < 2.0.0",
     "jss-default-unit": ">=2.0.0 < 3.0.0",
