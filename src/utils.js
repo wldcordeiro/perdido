@@ -5,7 +5,7 @@
  *                         a clear fix to an element.
  * @type {Object}
  */
-export const clearFix = {
+export const clearFix: Object = {
   '*zoom': '1',
 
   '&:before': {
@@ -25,7 +25,7 @@ export const clearFix = {
  *                     "debug" view.
  * @type {Object}
  */
-export const edit = {
+export const edit: Object = {
   '& *:not(input):not(textarea):not(select)': {
     backgroundColor: 'rgba(0, 0, 255, 0.1)',
   },

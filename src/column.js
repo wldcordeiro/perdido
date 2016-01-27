@@ -19,13 +19,13 @@
  */
 export default function column(columnVal: string, cycle: number,
                                gutter: string, flex: boolean): Object {
-  let style = {},
-    cycleVal = cycle;
+  let style: Object = {},
+    cycleVal: number = cycle;
 
 
   if (columnVal !== 'none') {
     if (cycle === -1) {
-      cycleVal = columnVal.split('/')[1];
+      cycleVal = parseInt(columnVal.split('/')[1], 10);
     } else {
       cycleVal = cycle;
     }

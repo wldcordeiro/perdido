@@ -1,5 +1,5 @@
 /* @flow */
-import {centerType} from './types';
+
 /**
  * Perdido.center: Horizontally center a containing element and apply padding
  * to it.
@@ -14,8 +14,8 @@ import {centerType} from './types';
 
 
 export default function center(maxWidth: string, padding: string,
-                               flex: bool): centerType {
-  let style: centerType = {
+                               flex: bool): Object {
+  let style: Object = {
     maxWidth,
     marginLeft: 'auto',
     marginRight: 'auto',

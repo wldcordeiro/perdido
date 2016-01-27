@@ -1,5 +1,4 @@
 /* @flow */
-import {alignType} from './types';
 
 /**
  * alignProps: Simple helper function that returns the appropriate JSON
@@ -43,8 +42,8 @@ function alignProps(
  *                  nested elements.
  */
 
-export default function align(alignment: string, flex: boolean): alignType {
-  var style = {};
+export default function align(alignment: string, flex: boolean): Object {
+  let style: Object = {};
 
   if (flex === false) {
     if (alignment === 'reset') {

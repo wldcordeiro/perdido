@@ -1,5 +1,4 @@
 /* @flow */
-import {masonryColumnType, masonryWrapType} from './types';
 
 /**
  * Perdido.masonryColumn: Creates a column for working with JS masonry
@@ -15,9 +14,9 @@ import {masonryColumnType, masonryWrapType} from './types';
 export function masonryColumn(
     columnVal: string,
     gutter: string,
-    flex: bool): masonryColumnType {
-  let style: masonryColumnType = {},
-    unit = gutter.match(/\D/g).join('');
+    flex: bool): Object {
+  let style: Object = {},
+    unit: ?string = gutter.match(/\D/g).join('');
 
   if (flex === true) {
     style.flex = '0 0 auto';
@@ -48,8 +47,8 @@ export function masonryColumn(
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a masonry grid wrapping element.
  */
-export function masonryWrap(flex: bool, gutter: string): masonryWrapType {
-  let style: masonryWrapType = {};
+export function masonryWrap(flex: bool, gutter: string): Object {
+  let style: Object = {};
   if (flex === false) {
     style['&:before'] = {
       content: "''",

@@ -10,8 +10,11 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a row.
  */
-export default function row(rowVal, gutter, flex) {
-  let style = {
+export default function row(
+    rowVal: string,
+    gutter: string,
+    flex: boolean): Object {
+  let style: Object = {
     width: '100%',
   };
 

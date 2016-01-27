@@ -17,7 +17,11 @@
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a waffle grid.
  */
-export default function waffle(waffleVal, cycle, gutter, flex) {
+export default function waffle(
+    waffleVal: string,
+    cycle: number,
+    gutter: string,
+    flex: boolean): Object {
   let style = {},
     cycleVal;
 

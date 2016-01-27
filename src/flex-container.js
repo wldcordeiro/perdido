@@ -1,5 +1,4 @@
 /* @flow */
-import {flexContainerType} from './types';
 
 /**
  * Perdido.flexContainer: Creates a Flexbox container.
@@ -10,10 +9,9 @@ import {flexContainerType} from './types';
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a flexbox container.
  */
-export default function flexContainer(direction: string): flexContainerType {
-  let style: flexContainerType = {
+export default function flexContainer(direction: string): Object {
+  let style: Object = {
     display: 'flex',
-    flexFlow: '',
   };
 
   if (direction === 'column') {
