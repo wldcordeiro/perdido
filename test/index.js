@@ -5,7 +5,7 @@ function testMethod(testName, method, testStrs) {
     var sheet = jss.createStyleSheet({
       a: {
         extend: method
-      }
+      },
     }, {named: false});
     equal(sheet.toString(), testStrs.join('\n'));
   });
@@ -27,7 +27,7 @@ QUnit.module('Perdido Align', {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  }
+  },
 });
 
 testMethod('can support resetting alignment', perdido.align('reset'), [
@@ -148,90 +148,90 @@ QUnit.module('Perdido Align Flex', {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  }
+  },
 });
 
-testMethod('can support resetting alignment', perdido.align('reset', 'flex'), [
+testMethod('can support resetting alignment', perdido.align('reset', true), [
   'a {\n  display: initial;\n}',
   'a > * {\n  justify-content: inherit;\n  align-items: inherit;\n}'
 ]);
 
-testMethod('can support aligning horizontally', perdido.align('horizontal', 'flex'), [
+testMethod('can support aligning horizontally', perdido.align('horizontal', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: inherit;\n}'
 ]);
 
-testMethod('can support aligning verticaly', perdido.align('vertical', 'flex'), [
+testMethod('can support aligning verticaly', perdido.align('vertical', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: inherit;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning top left', perdido.align('top-left', 'flex'), [
+testMethod('can support aligning top left', perdido.align('top-left', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top center', perdido.align('top-center', 'flex'), [
+testMethod('can support aligning top center', perdido.align('top-center', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top', perdido.align('top', 'flex'), [
+testMethod('can support aligning top', perdido.align('top', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top right', perdido.align('top-right', 'flex'), [
+testMethod('can support aligning top right', perdido.align('top-right', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning middle left', perdido.align('middle-left', 'flex'), [
+testMethod('can support aligning middle left', perdido.align('middle-left', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning left', perdido.align('left', 'flex'), [
+testMethod('can support aligning left', perdido.align('left', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning middle center', perdido.align('middle-center', 'flex'), [
+testMethod('can support aligning middle center', perdido.align('middle-center', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning center', perdido.align('center', 'flex'), [
+testMethod('can support aligning center', perdido.align('center', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning middle right', perdido.align('middle-right', 'flex'), [
+testMethod('can support aligning middle right', perdido.align('middle-right', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning right', perdido.align('right', 'flex'), [
+testMethod('can support aligning right', perdido.align('right', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning bottom left', perdido.align('bottom-left', 'flex'), [
+testMethod('can support aligning bottom left', perdido.align('bottom-left', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom center', perdido.align('bottom-center', 'flex'), [
+testMethod('can support aligning bottom center', perdido.align('bottom-center', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom', perdido.align('bottom', 'flex'), [
+testMethod('can support aligning bottom', perdido.align('bottom', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom right', perdido.align('bottom-right', 'flex'), [
+testMethod('can support aligning bottom right', perdido.align('bottom-right', true), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: flex-end;\n}'
 ]);
@@ -256,19 +256,19 @@ QUnit.module('Perdido Center', {
 });
 
 testMethod('can support horizontal centering containers', perdido.center('980px'), [
-  'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n  *zoom: 1;\n}',
+  'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
 testMethod('can support adding 30px padding', perdido.center('980px', '30px'), [
   'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;',
-  '  padding-left: 30px;\n  padding-right: 30px;\n  *zoom: 1;\n}',
+  '  padding-left: 30px;\n  padding-right: 30px;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.center('1140px', '30px', 'flex'), [
+testMethod('can support flexbox', perdido.center('1140px', '30px', true), [
   'a {\n  max-width: 1140px;\n  margin-left: auto;\n  margin-right: auto;',
   '  padding-left: 30px;\n  padding-right: 30px;\n  display: flex;',
   '  flex-flow: row wrap;\n}'
@@ -325,7 +325,7 @@ testMethod('can support no gutter', perdido.column('2/5', 3, '0'), [
   'a:nth-child(3n + 1) {\n  clear: left;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.column('2/6', 3, '60px', 'flex'), [
+testMethod('can support flexbox', perdido.column('2/6', 3, '60px', true), [
   'a {\n  width: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  flex: 0 0 auto;\n}',
   'a:nth-child(n) {\n  margin-right: 60px;\n}',
   'a:last-child {\n  margin-right: 0;\n}',
@@ -396,12 +396,12 @@ testMethod('can support masonry grid no column', perdido.masonryColumn('0'), [
   '  margin-right: 15px;\n}'
 ]);
 
-testMethod('can support masonry flexbox grid custom column', perdido.masonryColumn('60px', '30px', 'flex'), [
+testMethod('can support masonry flexbox grid custom column', perdido.masonryColumn('60px', '30px', true), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 60px - 30px);',
   '  margin-left: 15px;\n  margin-right: 15px;\n}'
 ]);
 
-testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('0', '30px', 'flex'), [
+testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('0', '30px', true), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 0 - 30px);',
   '  margin-left: 15px;\n  margin-right: 15px;\n}'
 ]);
@@ -425,18 +425,18 @@ QUnit.module('Perdido Masonry Wrap', {
   }
 });
 
-testMethod('can support creating a flexbox wrapper', perdido.masonryWrap('flex'), [
+testMethod('can support creating a flexbox wrapper', perdido.masonryWrap(true), [
   'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -15px;',
   '  margin-right: -15px;\n}'
 ]);
 
-testMethod('can support creating a non-flexbox wrapper', perdido.masonryWrap('no-flex'), [
-  'a {\n  *zoom: 1;\n  margin-left: -15px;\n  margin-right: -15px;\n}',
+testMethod('can support creating a non-flexbox wrapper', perdido.masonryWrap(false), [
+  'a {\n  margin-left: -15px;\n  margin-right: -15px;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
-testMethod('can support a custom gutter.', perdido.masonryWrap('flex', '60px'), [
+testMethod('can support a custom gutter.', perdido.masonryWrap(true, '60px'), [
   'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -30px;',
   '  margin-right: -30px;\n}'
 ]);
@@ -560,7 +560,7 @@ testMethod('can support no gutter', perdido.row('2/5', '0'), [
   'a:last-child {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.row('2/6', '60px', 'flex'), [
+testMethod('can support flexbox', perdido.row('2/6', '60px', true), [
   'a {\n  width: 100%;\n  flex: 0 0 auto;',
   '  height: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  margin-bottom: 60px;\n}',
   'a:last-child {\n  margin-bottom: 0;\n}'
@@ -649,7 +649,7 @@ testMethod('can support a custom gutter', perdido.waffle('3/6', 2, '60px'), [
   'a:nth-last-child(-n + 2) {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.waffle('2/5', 3, '0', 'flex'), [
+testMethod('can support flexbox', perdido.waffle('2/5', 3, '0', true), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.999999% * 2/5);',
   '  height: calc(99.999999% * 2/5);\n}',
   'a:nth-child(n) {\n  margin-right: 0;\n  margin-bottom: 0;\n}',

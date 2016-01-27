@@ -1,3 +1,16 @@
+/**
+ * alignProps: Simple helper function that returns the appropriate JSON
+ *             object for the style block.
+ *
+ * @param  {string} position  value for position rule
+ * @param  {string} top       value for top rule
+ * @param  {string} right     value for right rule
+ * @param  {string} bottom    value for bottom rule
+ * @param  {string} left      value for left rule
+ * @param  {string} transform value for transform rule
+ * @return {object}           An object containing the valid JSS rules and
+ *                            values.
+ */
 function alignProps(position, top, right, bottom, left, transform) {
   return {
     position,
@@ -5,14 +18,26 @@ function alignProps(position, top, right, bottom, left, transform) {
     right,
     bottom,
     left,
-    transform
+    transform,
   };
 }
 
-export default function align(alignment, flex) {
-  var style = {};
+/**
+ * Perdido.align: Align nested elements. Apply this to a parent container.
+ *
+ * @param {string} [reset|horizontal|vertical|top-left|top-center|top|
+ * top-right|middle-left|left|middle-center|center|middle-right|right|
+ * bottom-left|bottom-center|bottom|bottom-right] - The position the nested
+ *   element takes relative to the containing element.
+ * @param {boolean} - Determines whether this element should use Flexbox or not.
+ * @return {object} an object containing the valid JSS rules and values to align
+ *                  nested elements.
+ */
 
-  if (flex !== 'flex') {
+export default function align(alignment, flex) {
+  let style = {};
+
+  if (flex === false) {
     if (alignment === 'reset') {
       style.position = 'static';
 
@@ -130,69 +155,69 @@ export default function align(alignment, flex) {
     }
   } else {
     if (alignment === 'reset') {
-     style.display = 'initial';
+      style.display = 'initial';
 
-     style['& > *'] = {
-      justifyContent: 'inherit',
-      alignItems: 'inherit'
-     };
+      style['& > *'] = {
+        justifyContent: 'inherit',
+        alignItems: 'inherit',
+      };
     } else {
       style.display = 'flex';
 
       if (alignment === 'horizontal') {
         style['& > *'] = {
           justifyContent: 'center',
-          alignItems: 'inherit'
+          alignItems: 'inherit',
         };
       } else if (alignment === 'vertical') {
         style['& > *'] = {
           justifyContent: 'inherit',
-          alignItems: 'center'
+          alignItems: 'center',
         };
       } else if (alignment === 'top-left') {
         style['& > *'] = {
           justifyContent: 'flex-start',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
         };
       } else if (alignment === 'top-center' || alignment === 'top') {
         style['& > *'] = {
           justifyContent: 'center',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
         };
       } else if (alignment === 'top-right') {
         style['& > *'] = {
           justifyContent: 'flex-end',
-          alignItems: 'flex-start'
+          alignItems: 'flex-start',
         };
       } else if (alignment === 'middle-left' || alignment === 'left') {
         style['& > *'] = {
           justifyContent: 'flex-start',
-          alignItems: 'center'
+          alignItems: 'center',
         };
       } else if (alignment === 'middle-center' || alignment === 'center') {
         style['& > *'] = {
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         };
       } else if (alignment === 'middle-right' || alignment === 'right') {
         style['& > *'] = {
           justifyContent: 'flex-end',
-          alignItems: 'center'
+          alignItems: 'center',
         };
       } else if (alignment === 'bottom-left') {
         style['& > *'] = {
           justifyContent: 'flex-start',
-          alignItems: 'flex-end'
+          alignItems: 'flex-end',
         };
       } else if (alignment === 'bottom-center' || alignment === 'bottom') {
         style['& > *'] = {
           justifyContent: 'center',
-          alignItems: 'flex-end'
+          alignItems: 'flex-end',
         };
       } else if (alignment === 'bottom-right') {
         style['& > *'] = {
           justifyContent: 'flex-end',
-          alignItems: 'flex-end'
+          alignItems: 'flex-end',
         };
       }
     }
