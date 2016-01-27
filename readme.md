@@ -46,18 +46,53 @@ Say we had a simple HTML block like a `section` with three inner `article`'s and
 
 ```js
 import jss from 'jss';
+import extend from 'jss-extend';
+import nested from 'jss-nested';
+import camelCase from 'jss-camel-case';
+import defaultUnit from 'jss-default-unit';
+import vendorPrefixer from 'jss-vendor-prefixer';
 import perdido from 'perdido';
+
+
+jss.use(extend());
+jss.use(nested());
+jss.use(camelCase());
+jss.use(defaultUnit());
+jss.use(vendorPrefixer());
 
 
 var sectionStyle = {
     section: {
-        article: {
+        '& article': {
             ...perdido.column('1/3'),
         }
     }
 }
 
 jss.createStyleSheet(sectionStyle, {named: false}).attach();
+```
+
+The processed CSS that would be produced looks like this.
+
+```css
+section article {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+section article:nth-child(n) {
+  float: left;
+  clear: none;
+  margin-right: 30px;
+}
+section article:last-child {
+  margin-right: 0;
+}
+section article:nth-child(3n) {
+  float: right;
+  margin-right: 0;
+}
+section article:nth-child(3n + 1) {
+  clear: left;
+}
 ```
 
 

@@ -41,3 +41,9 @@
 ## 0.7.1 / 2016-01-26
 
 - Improve the returned API so that you can import the create method separate from the default Perdido instance.
+
+## 1.0.0 / 2016-01-27
+
+- Add documentation to library
+- Clean up code for linter
+- Stabalize API
