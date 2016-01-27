@@ -47,8 +47,46 @@ jss.createStyleSheet(sectionStyle, {named: false}).attach();
 
 ## API
 
+### Perdido.align(..)
+
+### Perdido.center(..)
+
+### Perdido.column(..)
+
+### Perdido.flexContainer(..)
+
+### Perdido.masonryColumn(..)
+
+### Perdido.masonryWrap(..)
+
+### Perdido.move(..)
+
+### Perdido.offset(..)
+
+### Perdido.row(..)
+
+### Perdido.utils.clearFix
+
+### Perdido.utils.edit
+
+### Perdido.waffle(..)
+
 ## Options
+
+Perdido comes with some default settings that can be changed to your liking.
+
+```js
+
+```
+
+* `Perdido.gutter` accepts any unit value (default: '30px')
+
+* `Perdido.flex` accepts a boolean value (default: false)
+
+* `Perdido.cycle` accepts a integer value (default: -1 for auto cycle)
+
+* `Perdido.offsetDir` accepts a string of either 'row' or 'column' (default: row)
 
 ## Contributing
 
-
+## Thanks

@@ -5,7 +5,7 @@
  *              element's height with a gutter.
  *
  * @param  {string} rowVal fraction of the containing element's height.
- * @param  {[type]} gutter The bottom margin size of the element.
+ * @param  {string} gutter The bottom margin size of the element.
  * @param  {boolean} flex   Whether to utilize flexbox or not
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a row.

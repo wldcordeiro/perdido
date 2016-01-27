@@ -1,11 +1,17 @@
 /* @flow */
 
 /**
- * [offset description]
- * @param  {string} offsetVal [description]
- * @param  {string} direction [description]
- * @param  {string} gutter    [description]
- * @return {object}           [description]
+ * Perdido.offset: Margin to the left, right, bottom, or top, of an element
+ * depending on if the fraction passed is positive or negative. It works for
+ * both horizontal and vertical grids but not both.
+ *
+ * @param  {string} offsetVal Fraction of the container to be offset.
+ * @param  {string} direction Direction the grid is going. Should be the
+ *                            opposite of the column or row it's being used on.
+ *                            Defaults to row.
+ * @param  {string} gutter    How large the gutter involved is.
+ * @return {object}           An object containing the valid JSS rules and
+ *                            values to offset elements.
  */
 export default function offset(
     offsetVal: string,

@@ -13,7 +13,7 @@
  *   you pick. To override the default use this param.,
  *   e.g.: {'.foo': { extend: Perdido.waffle('2/4', 2)}}
  * @param {length} [gutter] - how many units wide the gutter should be.
- * @param  {[type]} flex      Determines whether to use flexbox
+ * @param  {boolean} flex      Determines whether to use flexbox
  * @return {object} an object containing the valid JSS rules and values to
  *                  create a waffle grid.
  */
