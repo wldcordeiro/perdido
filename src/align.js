@@ -1,3 +1,14 @@
+/**
+ * alignProps: Simple helper function that returns the appropriate JSON
+ *             object for the style block.
+ * @param  {string} position  value for position rule
+ * @param  {string} top       value for top rule
+ * @param  {string} right     value for right rule
+ * @param  {string} bottom    value for bottom rule
+ * @param  {string} left      value for left rule
+ * @param  {string} transform value for transform rule
+ * @return {object}           An object containing the valid JSS rules and values.
+ */
 function alignProps(position, top, right, bottom, left, transform) {
   return {
     position,
@@ -9,6 +20,18 @@ function alignProps(position, top, right, bottom, left, transform) {
   };
 }
 
+/**
+ * Perdido.align: Align nested elements. Apply this to a parent container.
+ *
+ * @param {string} [reset|horizontal|vertical|top-left|top-center|top|
+ * top-right|middle-left|left|middle-center|center|middle-right|right|
+ * bottom-left|bottom-center|bottom|bottom-right] - The position the nested
+ *   element takes relative to the containing element.
+ * @param {string} [flex|no-flex] - Determines whether this element should
+ *   use Flexbox or not.
+ * @return {object} an object containing the valid JSS rules and values to align
+ *                  nested elements.
+ */
 export default function align(alignment, flex) {
   var style = {};
 
