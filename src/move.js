@@ -1,18 +1,32 @@
+/* @flow */
+
+/**
+ * Perdido.move: Source ordering. Shift elements left, right, up, or down, by
+ *               their left or top position by passing a positive or negative
+ *               fraction.
+ * @param  {string} moveVal   fraction of the container to be shifted.
+ * @param  {[type]} direction direction the grid should be going. Should
+ *                            be opposite of column or row it's being used on.
+ * @param  {[type]} gutter    Adjust the size of the gutter for this movement.
+ *                            Should match the element's gutter.
+ * @return {object} an object containing the valid JSS rules and values to shift
+ *                  an element around the grid.
+ */
 export default function move(moveVal, direction, gutter) {
   let style = {
-    position: 'relative'
+    position: 'relative',
   };
 
   if (direction === 'column') {
     if (gutter !== '0') {
-      style.top = 
+      style.top =
         `calc(99.99% * ${moveVal} - (${gutter} - ${gutter} * ${moveVal}) + ${gutter})`;
     } else {
       style.top = `calc(99.999999% * ${moveVal})`;
     }
   } else {
     if (gutter !== '0') {
-      style.left = 
+      style.left =
         `calc(99.99% * ${moveVal} - (${gutter} - ${gutter} * ${moveVal}) + ${gutter})`;
     } else {
       style.left = `calc(99.999999% * ${moveVal})`;

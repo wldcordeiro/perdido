@@ -1,36 +1,41 @@
+/* @flow */
+import {centerType} from './types';
 /**
  * Perdido.center: Horizontally center a containing element and apply padding
  * to it.
+ *
  * @param  {length} maxWidth a max width to assign of any unit type.
- * @param  {length} padding  left and right padding on the element, can be any unit.
- * @param  {string} flex     determines whether to use flex or not.
- * @return {object} an object containing the valid JSS rules and values to center
- *                  containing elements.
+ * @param  {length} padding  left and right padding on the element, can be
+ *                           any unit.
+ * @param  {boolean} flex     determines whether to use flex or not.
+ * @return {object} an object containing the valid JSS rules and values
+ *                  to center containing elements.
  */
-export default function center(maxWidth, padding, flex) {
-  let style = {
+
+
+export default function center(maxWidth: string, padding: string,
+                               flex: bool): centerType {
+  let style: centerType = {
     maxWidth,
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
   };
 
-  if (padding !== undefined) {
+  if (padding !== null) {
     style.paddingLeft = padding;
     style.paddingRight = padding;
   }
 
-  if (flex === 'no-flex') {
-    style['*zoom'] = '1';
-
+  if (flex === false) {
     style['&:before'] = {
       content: "''",
-      display: 'table'
+      display: 'table',
     };
 
     style['&:after'] = {
       content: "''",
       display: 'table',
-      clear: 'both'
+      clear: 'both',
     };
   } else {
     style.display = 'flex';

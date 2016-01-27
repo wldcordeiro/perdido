@@ -1,0 +1,10 @@
+[ignore]
+.*/tests/.*
+
+[include]
+src/*
+
+[libs]
+
+[options]
+esproposal.class_instance_fields=ignore

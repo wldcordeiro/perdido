@@ -1,20 +1,23 @@
-export const GUTTER = '30px';
-export const FLEX = 'no-flex';
-export const CYCLE = 'auto';
-export const OFFSET_DIR = 'row';
+/* @flow */
 
-export function calcDimension(val, gutter) {
-  if (gutter !== '0') {
-    return `calc(99.99% * ${val} - (${gutter} - ${gutter} * ${val}))`;
-  } else {
-    return `calc(99.999999% * ${val})`;
-  }
-}
-
-export function addFlex(flex, style) {
-  if (flex === 'flex') {
-    style.flex = '0 0 auto';
-  }
-
-  return style;
-}
+/**
+ * GUTTER: The default length of the gutters in Perdido grids.
+ * @type {string}
+ */
+export const GUTTER: string = '30px';
+/**
+ * FLEX: Whether to utilize flexbox or not.
+ * @type {boolean}
+ */
+export const FLEX: bool = false;
+/**
+ * CYCLE: Which column to cycle or for margin-right, defaults to auto, allowing
+ *        Perdido to decide..
+ * @type {string}
+ */
+export const CYCLE: number = -1;
+/**
+ * OFFSET_DIR: The default direct of the offsets in Perdido grids.
+ * @type {string}
+ */
+export const OFFSET_DIR: string = 'row';

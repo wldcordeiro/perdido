@@ -1,6 +1,15 @@
+/* @flow */
+
+/**
+ * [offset description]
+ * @param  {[type]} offsetVal [description]
+ * @param  {[type]} direction [description]
+ * @param  {[type]} gutter    [description]
+ * @return {[type]}           [description]
+ */
 export default function offset(offsetVal, direction, gutter) {
   let style = {},
-      numerator = offsetVal.split('/')[0];
+    numerator = offsetVal.split('/')[0];
 
   if (direction === 'column') {
     if (numerator > 0) {
