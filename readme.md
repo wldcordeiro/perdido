@@ -139,6 +139,46 @@ You can also make use of the `Perdido.center` property to assign a `max-width` a
 
 ### Controlling Cycle
 
+Every element gets a `float: left` and `margin-right: gutter` applied to it except the last element in the row and the last item in a container. Perdido will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
+
+To override this behavior and tell Perdido to apply margin-right: 0 to a specific iteration, simply pass a cycle param to your `perdido.column` method. It's the second argument.
+
+```js
+{
+    div: {
+        ...perdido.column('2/4', 2),
+    }
+}
+```
+
+This will tell Perdido to create `div:nth-child(2n) { margin-right: 0; }` *instead* of `div:nth-child(4n) { margin-right: 0; }` (like it would by default and break).
+
+Using this knowledge we can create really flexible layouts with varying widths like so (this will work for a single row nicely).
+
+```html
+<section class="row">
+    <div class="quarter">1</div>
+    <div class="half">2</div>
+    <div class="quarter">3</div>
+</section>
+```
+
+```js
+{
+    '.row': {
+        ...perdido.utils.clearFix,
+    },
+    '.quarter': {
+        ...perdido.column('1/4', 0),
+    },
+    '.half': {
+        ...perdido.column('1/2', 0),
+    },
+}
+```
+
+The concept of cycle is extremely important to Lost and what sets good Perdido developers apart from great Perdido developers. Really try to grok this!
+
 ### Nesting
 
 Nesting is simple. There is no context required.
@@ -296,9 +336,59 @@ You can even make a horizontal/vertical grid (a **waffle grid**) which resembles
 
 ### Flexbox Grids
 
+You can easily change your grids to support Flexbox by altering the perdido property `flex` by setting it to `true`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `perdido.flexContainer` or `perdido.center` (which includes `perdido.flexContainer` by default).
+
+```html
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</section>
+```
+
+```js
+perdido.flex = true;
+
+{
+    section: {
+       ...perdido.center('980px'), 
+    },
+    div: {
+        ...perdido.column('1/3'),
+    }
+}
+```
+
+Flexbox offers slightly cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
+
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations. All methods provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
+
+```html
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</section>
+```
+
+```js
+perdido.flex = true;
+
+{
+    section: {
+       ...perdido.center('980px', perdido.gutter, false), 
+    },
+    div: {
+        ...perdido.waffle('1/3', perdido.cycle, perdido.gutter, false),
+    }
+}
+```
+
 ### Masonry Support
 
-Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special methods to help with this: `perdido.masonryColumn` which creates a margin on the left and right of each element it's applied to, and `perdido.masonryWrap` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
+Perdido supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special methods to help with this: `perdido.masonryColumn` which creates a margin on the left and right of each element it's applied to, and `perdido.masonryWrap` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
 
 ```html
 <section>
