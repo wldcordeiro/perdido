@@ -1,4 +1,5 @@
 # Perdido JSS Grid System
+[![npm version](https://badge.fury.io/js/perdido.svg)](https://badge.fury.io/js/perdido)
 
 Perdido is a grid system for JSS, it is mostly a translation of the wonderful [Lost PostCSS Grid](https://github.com/peterramsing/lost) (thus the name as "perdido" means lost in Portuguese.) Perdido comes with a set of functions that you can use in your JSS to create fluid grids easily.
 
