@@ -47,3 +47,7 @@
 - Add documentation to library
 - Clean up code for linter
 - Stabalize API
+
+## 1.0.1 / 2016-01-27
+
+- Improve documentation navigation.
