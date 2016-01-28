@@ -51,3 +51,7 @@
 ## 1.0.1 / 2016-01-27
 
 - Improve documentation navigation.
+
+## 1.0.2 / 2016-01-27
+
+- Add better Tonic example.
