@@ -95,6 +95,8 @@ section article:nth-child(3n + 1) {
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ## Guide
 
 ### Basic Columns
@@ -123,6 +125,8 @@ To create a basic horizontal grid, just insert some elements into any containing
 
 `Perdido.utils.clearFix` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) style object since Perdido Grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time you have nested floated elements.
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### Centering Elements
 
 You can also make use of the `Perdido.center` property to assign a `max-width` and `margin: auto` to an element and center it on the page. clearfix will automatically be applied in this case.
@@ -137,6 +141,8 @@ You can also make use of the `Perdido.center` property to assign a `max-width` a
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### Controlling Cycle
 
@@ -178,6 +184,8 @@ Using this knowledge we can create really flexible layouts with varying widths l
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 The concept of cycle is extremely important to Perdido and what sets good Perdido developers apart from great Perdido developers. Really try to grok this!
 
 ### Nesting
@@ -205,6 +213,8 @@ Nesting is simple. There is no context required.
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### Offsetting Elements
 
 You can offset columns easily. To offset in the other direction, pass a negative fraction.
@@ -226,6 +236,8 @@ You can offset columns easily. To offset in the other direction, pass a negative
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### Alignment
 
@@ -251,6 +263,8 @@ Easily align children elements with the `Perdido.align` method. It accepts optio
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### Edit Mode
 
@@ -283,6 +297,8 @@ Use `perdido.utils.edit` on `body` to visualize the entire structure of your sit
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### Vertical Grids
 
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `perdido.row` method in place of `perdido.column`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
@@ -305,6 +321,8 @@ Once you've mastered the basic horizontal grid system (it shouldn't take long), 
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### Waffle Grids
 
@@ -334,6 +352,8 @@ You can even make a horizontal/vertical grid (a **waffle grid**) which resembles
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### Flexbox Grids
 
@@ -387,6 +407,8 @@ perdido.flex = true;
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### Masonry Support
 
 Perdido supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special methods to help with this: `perdido.masonryColumn` which creates a margin on the left and right of each element it's applied to, and `perdido.masonryWrap` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
@@ -409,6 +431,8 @@ Perdido supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). T
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ## API
 
@@ -441,6 +465,8 @@ Applies a clear fix to the element.
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### `Perdido.align(..)`
 
 Align nested elements. Apply this to a parent container.
@@ -462,6 +488,8 @@ Align nested elements. Apply this to a parent container.
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### `Perdido.center(..)`
 
 Horizontally center a container element and apply padding to it.
@@ -469,6 +497,17 @@ Horizontally center a container element and apply padding to it.
 * `max-width` - A max-width to assign. Can be any unit.
 * `padding` - Padding on the left and right of the element. Can be any unit.
 * `true|false` - Determines whether this element should use Flexbox or not.
+
+```js
+{
+    section: {
+        ...perdido.center('980px'),
+    },
+    section: {
+        ...perdido.center('1140px', '30px', true),
+    },
+}
+```
 
 ### `Perdido.column(..)`
 
@@ -491,11 +530,24 @@ Creates a column that is a fraction of the size of its containing element's widt
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### `Perdido.flexContainer(..)`
 
 Creates a Flexbox container.
 
 * `row|column` - The `flex-direction` the container should create. This is typically opposite to the element you're creating so a row would need `perdido.flexContainer('column')`.
+
+```js
+{
+    section: {
+        ...perdido.flexContainer('row'),
+    },
+    div: {
+        ...perdido.column('1/3'),
+    }
+}
+```
 
 ### `Perdido.masonryWrap(..)`
 
@@ -514,6 +566,8 @@ Creates a wrapping element for working with JS Masonry libraries like Isotope. A
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### `Perdido.masonryColumn(..)`
 
@@ -534,6 +588,7 @@ Creates a column for working with JS masonry libraries like Isotope. Assigns a m
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### `Perdido.move(..)`
 
@@ -575,6 +630,8 @@ note: If a gutter is set, `perdido.move` will not retain it and will need to be 
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### `Perdido.offset(..)`
 
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
@@ -593,6 +650,8 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ### `Perdido.row(..)`
 
@@ -613,6 +672,8 @@ Creates a row that is a fraction of the size of its containing element's height 
 }
 ```
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ### `Perdido.waffle(..)`
 
 * `fraction` - This is a simple fraction of the containing element's width and height.
@@ -630,6 +691,8 @@ Creates a row that is a fraction of the size of its containing element's height 
     }
 }
 ```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 ## Options
 
@@ -650,11 +713,19 @@ const perdido = create('20px', true, 3, 'column');
 
 * `Perdido.offsetDir` accepts a string of either 'row' or 'column' (default: row)
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ## Contributing
 
 Contributions are very welcome, and always appreciated! Every
 bit helps, and credit will always be given.
 
+**[:arrow_up: back to top](#table-of-contents)**
+
 ## Thanks
 
 * The [Lost CSS Grid team](https://github.com/peterramsing/lost) for making an awesome grid for me to base this on.
+
+**[:arrow_up: back to top](#table-of-contents)**
+
+**[:arrow_up: back to top](#table-of-contents)**
