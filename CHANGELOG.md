@@ -55,3 +55,16 @@
 ## 1.0.2 / 2016-01-27
 
 - Add better Tonic example.
+
+## 2.0.0 / 2016-01-28
+
+- API change, all optional arguments now come in option objects. So this
+
+```js
+perdido.column('1/3', 2, '30px', true)
+```
+Becomes this.
+```js
+perdido.column('1/3', {cycle: 2, gutter: '30px', flex: true})
+```
+This is across the entire public Perdido object API. If you import the various functions you are on your own, those functions have no default values and expect the arguments in the order declared.

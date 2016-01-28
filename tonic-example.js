@@ -25,14 +25,14 @@ var styleSheet = jss.createStyleSheet(testGrid, {named: false});
 
 styleSheet.toString();
 
-perdido = perdido.create('30px', true);
+var perdidoFlex = perdido.create('30px', {flex: true});
 perdido.flex = true;
 
 var testGrid2 = {
   article: {
-    extend: perdido.flexContainer('row'),
+    extend: perdidoFlex.flexContainer('row'),
     '& div': {
-      extend: perdido.column('1/3'),
+      extend: perdidoFlex.column('1/3'),
     },
   },
 };

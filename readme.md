@@ -1,7 +1,7 @@
 # Perdido JSS Grid System
 [![npm version](https://badge.fury.io/js/perdido.svg)](https://badge.fury.io/js/perdido)
 
-Perdido is a grid system for JSS, it is mostly a translation of the wonderful [Lost PostCSS Grid](https://github.com/peterramsing/lost) (thus the name as "perdido" means lost in Portuguese.) Perdido comes with a set of functions that you can use in your JSS to create fluid grids easily.
+Perdido is a grid system for [JSS](https://github.com/jsstyles/jss), it is mostly a translation of the wonderful [Lost PostCSS Grid](https://github.com/peterramsing/lost) (thus the name as "perdido" means lost in Portuguese.) Perdido comes with a set of functions that you can use in your JSS to create fluid grids easily.
 
 Perdido has requirements for the following JSS plugins, so make sure to install and initialize them.
 
@@ -166,7 +166,7 @@ To override this behavior and tell Perdido to apply margin-right: 0 to a specifi
 ```js
 {
     div: {
-        ...perdido.column('2/4', 2),
+        ...perdido.column('2/4', {cycle: 2}),
     }
 }
 ```
@@ -189,10 +189,10 @@ Using this knowledge we can create really flexible layouts with varying widths l
         ...perdido.utils.clearFix,
     },
     '.quarter': {
-        ...perdido.column('1/4', 0),
+        ...perdido.column('1/4', {cycle: 0}),
     },
     '.half': {
-        ...perdido.column('1/2', 0),
+        ...perdido.column('1/2', {cycle: 0}),
     },
 }
 ```
@@ -221,7 +221,7 @@ Nesting is simple. There is no context required.
 ```js
 {
     div: {
-        ...perdido.column(1/2),
+        ...perdido.column('1/2'),
     }
 }
 ```
@@ -412,10 +412,10 @@ perdido.flex = true;
 
 {
     section: {
-       ...perdido.center('980px', perdido.gutter, false), 
+       ...perdido.center('980px', {flex: false}), 
     },
     div: {
-        ...perdido.waffle('1/3', perdido.cycle, perdido.gutter, false),
+        ...perdido.waffle('1/3', {flex: false}),
     }
 }
 ```
@@ -448,6 +448,8 @@ Perdido supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). T
 **[:arrow_up: back to top](#table-of-contents)**
 
 ## API
+
+**NOTE: Bolded arguments are the required arguments.**
 
 ### `Perdido.utils`
 
@@ -484,7 +486,7 @@ Applies a clear fix to the element.
 
 Align nested elements. Apply this to a parent container.
 
-* `reset|horizontal|vertical|top-left|top-center|top|top-right|middle-left|left|middle-center|center|middle-right|right|bottom-left|bottom-center|bottom|bottom-right` - The position the nested element takes relative to the containing element.
+* **`reset|horizontal|vertical|top-left|top-center|top|top-right|middle-left|left|middle-center|center|middle-right|right|bottom-left|bottom-center|bottom|bottom-right` - The position the nested element takes relative to the containing element.**
 * `true|false` - Determines whether this element should use Flexbox or not.
 
 ```js
@@ -507,7 +509,7 @@ Align nested elements. Apply this to a parent container.
 
 Horizontally center a container element and apply padding to it.
 
-* `max-width` - A max-width to assign. Can be any unit.
+* **`max-width` - A max-width to assign. Can be any unit.**
 * `padding` - Padding on the left and right of the element. Can be any unit.
 * `true|false` - Determines whether this element should use Flexbox or not.
 
@@ -517,7 +519,7 @@ Horizontally center a container element and apply padding to it.
         ...perdido.center('980px'),
     },
     section: {
-        ...perdido.center('1140px', '30px', true),
+        ...perdido.center('1140px', {padding: '30px', flex: true}),
     },
 }
 ```
@@ -528,7 +530,7 @@ Horizontally center a container element and apply padding to it.
 
 Creates a column that is a fraction of the size of its containing element's width with a gutter.
 
-* `fraction` - This is a simple fraction of the containing element's width.
+* **`fraction` - This is a simple fraction of the containing element's width.**
 * `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and the default gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 * `cycle` - Perdido works by assigning a `margin-right` to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: `{'.foo': { ...perdido.column('2/4' 2)}}``
 * `true|false` - Determines whether this element should use Flexbox or not.
@@ -540,7 +542,7 @@ Creates a column that is a fraction of the size of its containing element's widt
         ...perdido.column('1/3'),
     },
     div: {
-        ...perdido.column('2/6', 3, '60px', false),
+        ...perdido.column('2/6', {cycle: 3, gutter: '60px', flex: false}),
     }
 }
 ```
@@ -551,7 +553,7 @@ Creates a column that is a fraction of the size of its containing element's widt
 
 Creates a Flexbox container.
 
-* `row|column` - The `flex-direction` the container should create. This is typically opposite to the element you're creating so a row would need `perdido.flexContainer('column')`.
+* **`row|column` - The `flex-direction` the container should create. This is typically opposite to the element you're creating so a row would need `perdido.flexContainer('column')`.**
 
 ```js
 {
@@ -576,7 +578,7 @@ Creates a wrapping element for working with JS Masonry libraries like Isotope. A
 ```js
 {
     section: {
-        ...perdido.masonryWrap(false),
+        ...perdido.masonryWrap({flex: false}),
     },
     div: {
         ...perdido.masonryColumn('1/3'),
@@ -590,7 +592,7 @@ Creates a wrapping element for working with JS Masonry libraries like Isotope. A
 
 Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
 
-* `fraction` - This is a simple fraction of the containing element's width
+* **`fraction` - This is a simple fraction of the containing element's width**
 * `gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit settings.gutter, but it's made available if you want your masonry grid to have a special gutter, it should match your masonry-row's gutter.
 * `true|false` - Determines whether this element should use Flexbox or not.
 
@@ -600,7 +602,7 @@ Creates a column for working with JS masonry libraries like Isotope. Assigns a m
         ...perdido.masonryWrap(true, '60px'),
     },
     div: {
-        ...perdido.masonryColumn('1/3', '60px', true),
+        ...perdido.masonryColumn('1/3', {gutter: '60px', flex: true}),
     }
 }
 ```
@@ -611,7 +613,7 @@ Creates a column for working with JS masonry libraries like Isotope. Assigns a m
 
 Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
 
-* `fraction` - Fraction of the container to be shifted.
+* **`fraction` - Fraction of the container to be shifted.**
 * `row|column` - Direction the grid is going. Should be the opposite of the column or row it's being used on.
 * `gutter` - Adjust the size of the gutter for this movement. Should match the element's gutter.
 
@@ -635,13 +637,13 @@ note: If a gutter is set, `perdido.move` will not retain it and will need to be 
 ```js
 {
     div: {
-        ...perdido.column('1/2', 0, '0'),
+        ...perdido.column('1/2', {gutter: '0'}),
 
         '&:first-child': {
-            ..perdido.move('1/2', 0, '0'),
+            ..perdido.move('1/2', {gutter: '0'}),
         },
         '&:last-child': {
-            ..perdido.move('-1/2', 0, '0'),
+            ..perdido.move('-1/2', {gutter: '0'}),
         }
     }
 }
@@ -653,7 +655,7 @@ note: If a gutter is set, `perdido.move` will not retain it and will need to be 
 
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 
-* `fraction` - Fraction of the container to be offset.
+* **`fraction` - Fraction of the container to be offset.**
 * `row|column` - Direction the grid is going. Should be the opposite of the column or row it's being used on. Defaults to row.
 * `gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
 
@@ -674,7 +676,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 
 Creates a row that is a fraction of the size of its containing element's height with a gutter.
 
-* `fraction` - This is a simple fraction of the containing element's height.
+* **`fraction` - This is a simple fraction of the containing element's height.**
 * `gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the default gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 * `true|false` - Determines whether this element should use Flexbox or not.
 
@@ -693,7 +695,7 @@ Creates a row that is a fraction of the size of its containing element's height 
 
 ### `Perdido.waffle(..)`
 
-* `fraction` - This is a simple fraction of the containing element's width and height.
+* **`fraction` - This is a simple fraction of the containing element's width and height.**
 * `cycle` - Perdido works by assigning a `margin-right/margin-bottom` to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: `{'.foo': { ...perdido.waffle('2/4' 2)}}``
 * `gutter` -  Typically this is left alone and the default gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 * `true|false` - Determines whether this element should use Flexbox or not.
@@ -719,7 +721,7 @@ Perdido comes with some default settings that can be changed to your liking.
 // ES6/2015
 import {create} from 'perdido';
 
-const perdido = create('20px', true, 3, 'column');
+const perdido = create({gutter: '20px', flex: true, cycle: 3, offsetDir: 'column'});
 ```
 
 * `Perdido.gutter` accepts any unit value (default: '30px')
