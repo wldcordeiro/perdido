@@ -53,7 +53,7 @@ export default class Perdido {
    * @see align
    * @api public
    */
-  align(alignment, flex = FLEX) {
+  align(alignment, flex = this.flex) {
     return align(alignment, flex);
   }
 
@@ -63,7 +63,7 @@ export default class Perdido {
    * @see center
    * @api public
    */
-  center(maxWidth, padding, flex = FLEX) {
+  center(maxWidth, padding, flex = this.flex) {
     return center(maxWidth, padding, flex);
   }
 
@@ -73,7 +73,11 @@ export default class Perdido {
    * @see column
    * @api public
    */
-  column(columnVal, cycle = CYCLE, gutter = GUTTER, flex = FLEX) {
+  column(
+      columnVal,
+      cycle = this.cycle,
+      gutter = this.gutter,
+      flex = this.flex) {
     return column(columnVal, cycle, gutter, flex);
   }
 
@@ -83,7 +87,7 @@ export default class Perdido {
    * @see masonry.masonryColumn
    * @api public
    */
-  masonryColumn(columnVal, gutter = GUTTER, flex = FLEX) {
+  masonryColumn(columnVal, gutter = this.gutter, flex = this.flex) {
     return masonryColumn(columnVal, gutter, flex);
   }
 
@@ -94,7 +98,7 @@ export default class Perdido {
    * @see masonry.masonryWrap
    * @api public
    */
-  masonryWrap(flex = FLEX, gutter = GUTTER) {
+  masonryWrap(flex = this.flex, gutter = this.gutter) {
     return masonryWrap(flex, gutter);
   }
 
@@ -104,7 +108,7 @@ export default class Perdido {
    * @see move
    * @api public
    */
-  move(moveVal, direction = OFFSET_DIR, gutter = GUTTER) {
+  move(moveVal, direction = this.offsetDir, gutter = this.gutter) {
     return move(moveVal, direction, gutter);
   }
 
@@ -114,7 +118,7 @@ export default class Perdido {
    * @see offset
    * @api public
    */
-  offset(offsetVal, direction = OFFSET_DIR, gutter = GUTTER) {
+  offset(offsetVal, direction = this.offsetDir, gutter = this.gutter) {
     return offset(offsetVal, direction, gutter);
   }
 
@@ -124,7 +128,7 @@ export default class Perdido {
    * @see row
    * @api public
    */
-  row(rowVal, gutter = GUTTER, flex = FLEX) {
+  row(rowVal, gutter = this.gutter, flex = this.flex) {
     return row(rowVal, gutter, flex);
   }
 
@@ -134,7 +138,11 @@ export default class Perdido {
    * @see waffle
    * @api public
    */
-  waffle(waffleVal, cycle = CYCLE, gutter = GUTTER, flex = FLEX) {
+  waffle(
+      waffleVal,
+      cycle = this.cycle,
+      gutter = this.gutter,
+      flex = this.flex) {
     return waffle(waffleVal, cycle, gutter, flex);
   }
 }
