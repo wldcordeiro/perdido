@@ -1,4 +1,71 @@
 'use strict';
+QUnit.module('Perdido Creation', {
+  setup() {
+    var jss = window.jss,
+        jssExtend = window.jssExtend,
+        jssNested = window.jssNested,
+        jssCamelCase = window.jssCamelCase,
+        jssDefaultUnit = window.jssDefaultUnit,
+        jssVendorPrefixer = window.jssVendorPrefixer,
+        perdido = window.perdido;
+
+    jss.use(jssExtend());
+    jss.use(jssNested());
+    jss.use(jssCamelCase());
+    jss.use(jssDefaultUnit());
+    jss.use(jssVendorPrefixer());
+  },
+});
+
+test('create bare default Perdido', function() {
+  var testPerdido = perdido.create();
+  equal(testPerdido.gutter, '30px');
+  equal(testPerdido.flex, false);
+  equal(testPerdido.cycle, -1);
+  equal(testPerdido.offsetDir, 'row');
+});
+
+test('create Perdido with one override', function() {
+  var testPerdido = perdido.create({gutter: '60px'});
+  equal(testPerdido.gutter, '60px');
+  equal(testPerdido.flex, false);
+  equal(testPerdido.cycle, -1);
+  equal(testPerdido.offsetDir, 'row');
+});
+
+test('create Perdido with two overrides', function() {
+  var testPerdido = perdido.create({gutter: '40em', flex: true});
+  equal(testPerdido.gutter, '40em');
+  equal(testPerdido.flex, true);
+  equal(testPerdido.cycle, -1);
+  equal(testPerdido.offsetDir, 'row');
+});
+
+test('create Perdido with two out of order overrides', function() {
+  var testPerdido = perdido.create({gutter: '40em', cycle: 6});
+  equal(testPerdido.gutter, '40em');
+  equal(testPerdido.flex, false);
+  equal(testPerdido.cycle, 6);
+  equal(testPerdido.offsetDir, 'row');
+});
+
+test('create Perdido with three overrides', function() {
+  var testPerdido = perdido.create({gutter: '80em', flex: true, cycle: 3});
+  equal(testPerdido.gutter, '80em');
+  equal(testPerdido.flex, true);
+  equal(testPerdido.cycle, 3);
+  equal(testPerdido.offsetDir, 'row');
+});
+
+test('create Perdido with four overrides', function() {
+  var testPerdido = perdido.create({gutter: '75rem', flex: true, cycle: 3,
+    offsetDir: 'column'});
+  equal(testPerdido.gutter, '75rem');
+  equal(testPerdido.flex, true);
+  equal(testPerdido.cycle, 3);
+  equal(testPerdido.offsetDir, 'column');
+});
+
 
 function testMethod(testName, method, testStrs) {
   return test(testName, function() {
@@ -27,6 +94,11 @@ QUnit.module('Perdido Align', {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
+
+    perdido.gutter = '30px';
+    perdido.flex = false;
+    perdido.cycle = -1;
+    perdido.offsetDir = 'row';
   },
 });
 
@@ -148,90 +220,95 @@ QUnit.module('Perdido Align Flex', {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
+
+    perdido.gutter = '30px';
+    perdido.flex = false;
+    perdido.cycle = -1;
+    perdido.offsetDir = 'row';
   },
 });
 
-testMethod('can support resetting alignment', perdido.align('reset', true), [
+testMethod('can support resetting alignment', perdido.align('reset', {flex: true}), [
   'a {\n  display: initial;\n}',
-  'a > * {\n  justify-content: inherit;\n  align-items: inherit;\n}'
+  'a > * {\n  justify-content: inherit;\n  align-items: inherit;\n}',
 ]);
 
-testMethod('can support aligning horizontally', perdido.align('horizontal', true), [
+testMethod('can support aligning horizontally', perdido.align('horizontal', {flex: true}), [
   'a {\n  display: flex;\n}',
-  'a > * {\n  justify-content: center;\n  align-items: inherit;\n}'
+  'a > * {\n  justify-content: center;\n  align-items: inherit;\n}',
 ]);
 
-testMethod('can support aligning verticaly', perdido.align('vertical', true), [
+testMethod('can support aligning verticaly', perdido.align('vertical', {flex: true}), [
   'a {\n  display: flex;\n}',
-  'a > * {\n  justify-content: inherit;\n  align-items: center;\n}'
+  'a > * {\n  justify-content: inherit;\n  align-items: center;\n}',
 ]);
 
-testMethod('can support aligning top left', perdido.align('top-left', true), [
+testMethod('can support aligning top left', perdido.align('top-left', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top center', perdido.align('top-center', true), [
+testMethod('can support aligning top center', perdido.align('top-center', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top', perdido.align('top', true), [
+testMethod('can support aligning top', perdido.align('top', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning top right', perdido.align('top-right', true), [
+testMethod('can support aligning top right', perdido.align('top-right', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: flex-start;\n}'
 ]);
 
-testMethod('can support aligning middle left', perdido.align('middle-left', true), [
+testMethod('can support aligning middle left', perdido.align('middle-left', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning left', perdido.align('left', true), [
+testMethod('can support aligning left', perdido.align('left', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning middle center', perdido.align('middle-center', true), [
+testMethod('can support aligning middle center', perdido.align('middle-center', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning center', perdido.align('center', true), [
+testMethod('can support aligning center', perdido.align('center', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning middle right', perdido.align('middle-right', true), [
+testMethod('can support aligning middle right', perdido.align('middle-right', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning right', perdido.align('right', true), [
+testMethod('can support aligning right', perdido.align('right', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: center;\n}'
 ]);
 
-testMethod('can support aligning bottom left', perdido.align('bottom-left', true), [
+testMethod('can support aligning bottom left', perdido.align('bottom-left', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-start;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom center', perdido.align('bottom-center', true), [
+testMethod('can support aligning bottom center', perdido.align('bottom-center', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom', perdido.align('bottom', true), [
+testMethod('can support aligning bottom', perdido.align('bottom', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: center;\n  align-items: flex-end;\n}'
 ]);
 
-testMethod('can support aligning bottom right', perdido.align('bottom-right', true), [
+testMethod('can support aligning bottom right', perdido.align('bottom-right', {flex: true}), [
   'a {\n  display: flex;\n}',
   'a > * {\n  justify-content: flex-end;\n  align-items: flex-end;\n}'
 ]);
@@ -252,6 +329,11 @@ QUnit.module('Perdido Center', {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
+
+    perdido.gutter = '30px';
+    perdido.flex = false;
+    perdido.cycle = -1;
+    perdido.offsetDir = 'row';
   }
 });
 
@@ -261,14 +343,14 @@ testMethod('can support horizontal centering containers', perdido.center('980px'
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
-testMethod('can support adding 30px padding', perdido.center('980px', '30px'), [
+testMethod('can support adding 30px padding', perdido.center('980px', {padding: '30px'}), [
   'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;',
   '  padding-left: 30px;\n  padding-right: 30px;\n}',
   'a:before {\n  content: \'\';\n  display: table;\n}',
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.center('1140px', '30px', true), [
+testMethod('can support flexbox', perdido.center('1140px', {padding: '30px', flex: true}), [
   'a {\n  max-width: 1140px;\n  margin-left: auto;\n  margin-right: auto;',
   '  padding-left: 30px;\n  padding-right: 30px;\n  display: flex;',
   '  flex-flow: row wrap;\n}'
@@ -309,7 +391,7 @@ testMethod('can support 2/5 column layout', perdido.column('2/5'), [
   'a:nth-child(5n + 1) {\n  clear: left;\n}'
 ]);
 
-testMethod('can support custom cycle', perdido.column('2/4', 2), [
+testMethod('can support custom cycle', perdido.column('2/4', {cycle: 2}), [
   'a {\n  width: calc(99.99% * 2/4 - (30px - 30px * 2/4));\n}',
   'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;\n  clear: none;\n}',
   'a:last-child {\n  margin-right: 0;\n}',
@@ -317,7 +399,7 @@ testMethod('can support custom cycle', perdido.column('2/4', 2), [
   'a:nth-child(2n + 1) {\n  clear: left;\n}'
 ]);
 
-testMethod('can support no gutter', perdido.column('2/5', 3, '0'), [
+testMethod('can support no gutter', perdido.column('2/5', {cycle: 3, gutter: '0'}), [
   'a {\n  width: calc(99.999999% * 2/5);\n}',
   'a:nth-child(n) {\n  float: left;\n  margin-right: 0;\n  clear: none;\n}',
   'a:last-child {\n  margin-right: 0;\n}',
@@ -325,7 +407,7 @@ testMethod('can support no gutter', perdido.column('2/5', 3, '0'), [
   'a:nth-child(3n + 1) {\n  clear: left;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.column('2/6', 3, '60px', true), [
+testMethod('can support flexbox', perdido.column('2/6', {cycle: 3, gutter: '60px', flex: true}), [
   'a {\n  width: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  flex: 0 0 auto;\n}',
   'a:nth-child(n) {\n  margin-right: 60px;\n}',
   'a:last-child {\n  margin-right: 0;\n}',
@@ -396,12 +478,12 @@ testMethod('can support masonry grid no column', perdido.masonryColumn('0'), [
   '  margin-right: 15px;\n}'
 ]);
 
-testMethod('can support masonry flexbox grid custom column', perdido.masonryColumn('60px', '30px', true), [
+testMethod('can support masonry flexbox grid custom column', perdido.masonryColumn('60px', {gutter: '30px', flex: true}), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 60px - 30px);',
   '  margin-left: 15px;\n  margin-right: 15px;\n}'
 ]);
 
-testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('0', '30px', true), [
+testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('0', {gutter: '30px', flex: true}), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.99% * 0 - 30px);',
   '  margin-left: 15px;\n  margin-right: 15px;\n}'
 ]);
@@ -425,7 +507,7 @@ QUnit.module('Perdido Masonry Wrap', {
   }
 });
 
-testMethod('can support creating a flexbox wrapper', perdido.masonryWrap(true), [
+testMethod('can support creating a flexbox wrapper', perdido.masonryWrap({flex: true}), [
   'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -15px;',
   '  margin-right: -15px;\n}'
 ]);
@@ -436,7 +518,7 @@ testMethod('can support creating a non-flexbox wrapper', perdido.masonryWrap(fal
   'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
 ]);
 
-testMethod('can support a custom gutter.', perdido.masonryWrap(true, '60px'), [
+testMethod('can support a custom gutter.', perdido.masonryWrap({flex: true, gutter: '60px'}), [
   'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -30px;',
   '  margin-right: -30px;\n}'
 ]);
@@ -470,17 +552,17 @@ testMethod('can support moving elements right', perdido.move('-1/3'), [
   '  left: calc(99.99% * -1/3 - (30px - 30px * -1/3) + 30px);\n}'
 ]);
 
-testMethod('can support moving elements up', perdido.move('1/3', 'column'), [
+testMethod('can support moving elements up', perdido.move('1/3', {direction: 'column'}), [
   'a {\n  position: relative;',
   '  top: calc(99.99% * 1/3 - (30px - 30px * 1/3) + 30px);\n}'
 ]);
 
-testMethod('can support moving elements down', perdido.move('-1/3', 'column'), [
+testMethod('can support moving elements down', perdido.move('-1/3',{direction: 'column'}), [
   'a {\n  position: relative;',
   '  top: calc(99.99% * -1/3 - (30px - 30px * -1/3) + 30px);\n}'
 ]);
 
-testMethod('can support custom gutter', perdido.move('1/2', 'row', '60px'), [
+testMethod('can support custom gutter', perdido.move('1/2', {gutter: '60px'}), [
   'a {\n  position: relative;',
   '  left: calc(99.99% * 1/2 - (60px - 60px * 1/2) + 60px);\n}'
 ]);
@@ -512,15 +594,15 @@ testMethod('can support moving elements to the right', perdido.offset('-1/3'), [
   'a {\n  margin-left: calc(99.99% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px) !important;\n}'
 ]);
 
-testMethod('can support moving elements up', perdido.offset('1/3', 'column'), [
+testMethod('can support moving elements up', perdido.offset('1/3', {direction: 'column'}), [
   'a {\n  margin-bottom: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;\n}'
 ]);
 
-testMethod('can support moving elements down', perdido.offset('-1/3', 'column'), [
+testMethod('can support moving elements down', perdido.offset('-1/3', {direction: 'column'}), [
   'a {\n  margin-top: calc(99.99% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px) !important;\n}'
 ]);
 
-testMethod('can support custom gutter', perdido.offset('1/2', 'row', '60px'), [
+testMethod('can support custom gutter', perdido.offset('1/2', {gutter: '60px'}), [
   'a {\n  margin-right: calc(99.99% * 1/2 - (60px - 60px * 1/2) + (60px * 2)) !important;\n}'
 ]);
 
@@ -555,12 +637,12 @@ testMethod('can support 2/5 row layout', perdido.row('2/5'), [
   '  margin-bottom: 30px;\n}\na:last-child {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support no gutter', perdido.row('2/5', '0'), [
+testMethod('can support no gutter', perdido.row('2/5', {gutter: '0'}), [
   'a {\n  width: 100%;\n  height: calc(99.999999% * 2/5);\n  margin-bottom: 0;\n}',
   'a:last-child {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.row('2/6', '60px', true), [
+testMethod('can support flexbox', perdido.row('2/6', {gutter: '60px', flex: true}), [
   'a {\n  width: 100%;\n  flex: 0 0 auto;',
   '  height: calc(99.99% * 2/6 - (60px - 60px * 2/6));\n  margin-bottom: 60px;\n}',
   'a:last-child {\n  margin-bottom: 0;\n}'
@@ -627,7 +709,7 @@ testMethod('can support a 3 column layout', perdido.waffle('1/3'), [
   'a:nth-last-child(-n + 3) {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support a custom cycle', perdido.waffle('2/4', 2), [
+testMethod('can support a custom cycle', perdido.waffle('2/4', {cycle: 2}), [
   'a {\n  width: calc(99.99% * 2/4 - (30px - 30px * 2/4));',
   '  height: calc(99.99% * 2/4 - (30px - 30px * 2/4));\n}',
   'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;',
@@ -638,7 +720,7 @@ testMethod('can support a custom cycle', perdido.waffle('2/4', 2), [
   'a:nth-last-child(-n + 2) {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support a custom gutter', perdido.waffle('3/6', 2, '60px'), [
+testMethod('can support a custom gutter', perdido.waffle('3/6', {cycle: 2, gutter: '60px'}), [
   'a {\n  width: calc(99.99% * 3/6 - (60px - 60px * 3/6));',
   '  height: calc(99.99% * 3/6 - (60px - 60px * 3/6));\n}',
   'a:nth-child(n) {\n  float: left;\n  margin-right: 60px;',
@@ -649,7 +731,7 @@ testMethod('can support a custom gutter', perdido.waffle('3/6', 2, '60px'), [
   'a:nth-last-child(-n + 2) {\n  margin-bottom: 0;\n}'
 ]);
 
-testMethod('can support flexbox', perdido.waffle('2/5', 3, '0', true), [
+testMethod('can support flexbox', perdido.waffle('2/5', {cycle: 3, gutter: '0', flex: true}), [
   'a {\n  flex: 0 0 auto;\n  width: calc(99.999999% * 2/5);',
   '  height: calc(99.999999% * 2/5);\n}',
   'a:nth-child(n) {\n  margin-right: 0;\n  margin-bottom: 0;\n}',
