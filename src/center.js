@@ -18,7 +18,7 @@ export default function center(maxWidth, padding, flex) {
     marginRight: 'auto',
   };
 
-  if (padding !== null) {
+  if (padding) {
     style.paddingLeft = padding;
     style.paddingRight = padding;
   }
