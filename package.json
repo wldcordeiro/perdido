@@ -1,6 +1,6 @@
 {
   "name": "perdido",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The Lost CSS grid reimagined to work with the JSS system",
   "author": {
     "name": "Wellington Cordeiro",
@@ -22,6 +22,7 @@
   "scripts": {
     "all": "npm run lint && npm run build",
     "test": "opener ./test/index.html",
+    "cover": "istanbul cover test/index.js",
     "build": "npm run clean && npm run build:lib && npm run build:max && npm run build:min",
     "clean": "rimraf ./lib/*",
     "build:lib": "babel src --out-dir lib",

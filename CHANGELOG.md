@@ -68,3 +68,8 @@ Becomes this.
 perdido.column('1/3', {cycle: 2, gutter: '30px', flex: true})
 ```
 This is across the entire public Perdido object API. If you import the various functions you are on your own, those functions have no default values and expect the arguments in the order declared.
+
+## 2.0.1 / 2016-01-29
+
+- Add Coverage to Project.
+- Fix bugs discovered by uncovered code.
