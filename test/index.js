@@ -1,13 +1,22 @@
-'use strict';
+var QUnit = require('qunitjs'),
+  test = QUnit.test,
+  jss = require('jss'),
+  jssExtend = require('jss-extend'),
+  jssNested = require('jss-nested'),
+  jssCamelCase = require('jss-camel-case'),
+  jssDefaultUnit = require('jss-default-unit'),
+  jssVendorPrefixer = require('jss-vendor-prefixer'),
+  perdido = require('../lib/');
+
 QUnit.module('Perdido Creation', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
