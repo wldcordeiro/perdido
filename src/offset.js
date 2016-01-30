@@ -47,7 +47,7 @@ export default function offset(offsetVal, direction, gutter) {
         style.marginRight = `calc(99.999999% * ${offsetVal}) !important`;
       }
     } else if (numerator < 0) {
-      if (offsetVal !== '0') {
+      if (gutter !== '0') {
         style.marginLeft = [
           `calc(99.99% * (${offsetVal} * -1) - `,
           `(${gutter} - ${gutter} * (${offsetVal} * -1))`,

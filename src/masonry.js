@@ -11,7 +11,11 @@
  */
 export function masonryColumn(columnVal, gutter, flex) {
   let style = {},
-    unit = gutter.match(/\D/g).join('');
+    unit = gutter.match(/\D/g);
+
+  if (unit !== null) {
+    unit = unit.join('');
+  }
 
   if (flex === true) {
     style.flex = '0 0 auto';
@@ -25,8 +29,6 @@ export function masonryColumn(columnVal, gutter, flex) {
     style.marginRight = `${parseInt(gutter, 10) / 2}${unit}`;
   } else {
     style.width = `calc(99.99% * ${columnVal})`;
-    style.marginLeft = `${parseInt(gutter, 10) / 2}${unit}`;
-    style.marginRight = `${parseInt(gutter, 10) / 2}${unit}`;
   }
 
   return style;

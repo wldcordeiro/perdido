@@ -1,13 +1,33 @@
-'use strict';
+// Hack to get istanbul to work
+if (typeof require !== 'undefined') {
+  var QUnit = require('qunitjs'),
+    test = QUnit.test,
+    jss = require('jss'),
+    jssExtend = require('jss-extend'),
+    jssNested = require('jss-nested'),
+    jssCamelCase = require('jss-camel-case'),
+    jssDefaultUnit = require('jss-default-unit'),
+    jssVendorPrefixer = require('jss-vendor-prefixer'),
+    perdido = require('../lib');
+} else {
+  var jss,
+  jssExtend,
+  jssNested,
+  jssCamelCase,
+  jssDefaultUnit,
+  jssVendorPrefixer,
+  perdido;
+}
+
 QUnit.module('Perdido Creation', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -71,7 +91,7 @@ function testMethod(testName, method, testStrs) {
   return test(testName, function() {
     var sheet = jss.createStyleSheet({
       a: {
-        extend: method
+        extend: method,
       },
     }, {named: false});
     equal(sheet.toString(), testStrs.join('\n'));
@@ -80,14 +100,14 @@ function testMethod(testName, method, testStrs) {
 
 // Align
 QUnit.module('Perdido Align', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -206,14 +226,14 @@ testMethod('can support aligning bottom right', perdido.align('bottom-right'), [
 
 // Flex Align
 QUnit.module('Perdido Align Flex', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -315,14 +335,14 @@ testMethod('can support aligning bottom right', perdido.align('bottom-right', {f
 
 // Center
 QUnit.module('Perdido Center', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -358,14 +378,14 @@ testMethod('can support flexbox', perdido.center('1140px', {padding: '30px', fle
 
 // Column
 QUnit.module('Perdido Column', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -424,14 +444,14 @@ testMethod('can support none rule', perdido.column('none'), [
 
 // Flex Container
 QUnit.module('Perdido FlexContainer', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -451,14 +471,14 @@ testMethod('can support flex for column', perdido.flexContainer('column'), [
 
 // Masonry Column
 QUnit.module('Perdido Masonry Column', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -471,6 +491,10 @@ QUnit.module('Perdido Masonry Column', {
 testMethod('can support masonry grid custom column', perdido.masonryColumn('60px'), [
   'a {\n  float: left;\n  width: calc(99.99% * 60px - 30px);\n  margin-left: 15px;',
   '  margin-right: 15px;\n}'
+]);
+
+testMethod('can support masonry grid custom column no gutter', perdido.masonryColumn('60px', {gutter: '0'}), [
+  'a {\n  float: left;\n  width: calc(99.99% * 60px);\n}'
 ]);
 
 testMethod('can support masonry grid no column', perdido.masonryColumn('0'), [
@@ -490,14 +514,14 @@ testMethod('can support masonry flexbox grid no column', perdido.masonryColumn('
 
 // Masonry Wrap
 QUnit.module('Perdido Masonry Wrap', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -525,14 +549,14 @@ testMethod('can support a custom gutter.', perdido.masonryWrap({flex: true, gutt
 
 // Move
 QUnit.module('Perdido Move', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -567,16 +591,26 @@ testMethod('can support custom gutter', perdido.move('1/2', {gutter: '60px'}), [
   '  left: calc(99.99% * 1/2 - (60px - 60px * 1/2) + 60px);\n}'
 ]);
 
+testMethod('can support no gutter', perdido.move('1/2', {gutter: '0'}), [
+  'a {\n  position: relative;',
+  '  left: calc(99.999999% * 1/2);\n}'
+]);
+
+testMethod('can support no gutter column', perdido.move('1/2', {gutter: '0', direction: 'column'}), [
+  'a {\n  position: relative;',
+  '  top: calc(99.999999% * 1/2);\n}'
+]);
+
 // Offset
 QUnit.module('Perdido Offset', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -606,17 +640,43 @@ testMethod('can support custom gutter', perdido.offset('1/2', {gutter: '60px'}),
   'a {\n  margin-right: calc(99.99% * 1/2 - (60px - 60px * 1/2) + (60px * 2)) !important;\n}'
 ]);
 
+testMethod('can support no gutter', perdido.offset('1/2', {gutter: '0'}), [
+  'a {\n  margin-right: calc(99.999999% * 1/2) !important;\n}'
+]);
+
+testMethod('can support no gutter negative offset', perdido.offset('-1/2', {gutter: '0'}), [
+  'a {\n  margin-left: calc(99.999999% * -1/2) !important;\n}'
+]);
+
+testMethod('can support no gutter column offset',
+  perdido.offset('1/2', {gutter: '0', direction: 'column'}), [
+    'a {\n  margin-bottom: calc(99.999999% * 1/2) !important;\n}'
+  ]);
+
+testMethod('can support no gutter column negative offset',
+  perdido.offset('-1/2', {gutter: '0', direction: 'column'}), [
+    'a {\n  margin-top: calc(99.999999% * -1/2) !important;\n}'
+  ]);
+
+testMethod('can support zero offset', perdido.offset('0'), [
+  'a {\n  margin-left: 0 !important;\n  margin-right: 30px !important;\n}'
+]);
+
+testMethod('can support zero offset column', perdido.offset('0', {direction: 'column'}), [
+  'a {\n  margin-top: 0 !important;\n  margin-bottom: 30px !important;\n}'
+]);
+
 // Row
 
 QUnit.module('Perdido Row', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -650,14 +710,14 @@ testMethod('can support flexbox', perdido.row('2/6', {gutter: '60px', flex: true
 
 // Utils
 QUnit.module('Perdido Utilities', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
@@ -681,14 +741,14 @@ testMethod('can support applying clearfix', perdido.utils.clearFix, [
 
 // Waffle
 QUnit.module('Perdido Waffle', {
-  setup() {
-    var jss = window.jss,
-        jssExtend = window.jssExtend,
-        jssNested = window.jssNested,
-        jssCamelCase = window.jssCamelCase,
-        jssDefaultUnit = window.jssDefaultUnit,
-        jssVendorPrefixer = window.jssVendorPrefixer,
-        perdido = window.perdido;
+  setup() {
+    jss = window.jss;
+    jssExtend = window.jssExtend;
+    jssNested = window.jssNested;
+    jssCamelCase = window.jssCamelCase;
+    jssDefaultUnit = window.jssDefaultUnit;
+    jssVendorPrefixer = window.jssVendorPrefixer;
+    perdido = window.perdido;
 
     jss.use(jssExtend());
     jss.use(jssNested());
