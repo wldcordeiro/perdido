@@ -8,7 +8,7 @@
  *                  create a flexbox container.
  */
 export default function flexContainer(direction) {
-  let style = {
+  const style = {
     display: 'flex',
   };
 

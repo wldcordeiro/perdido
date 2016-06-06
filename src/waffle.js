@@ -16,8 +16,8 @@
  *                  create a waffle grid.
  */
 export default function waffle(waffleVal, cycle, gutter, flex) {
-  let style = {},
-    cycleVal;
+  const style = {};
+  let cycleVal;
 
   if (cycle === -1) {
     cycleVal = waffleVal.split('/')[1];
@@ -75,7 +75,6 @@ export default function waffle(waffleVal, cycle, gutter, flex) {
         marginBottom: '0',
       };
     }
-
   }
 
   if (gutter !== '0') {

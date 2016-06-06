@@ -9,7 +9,7 @@
  *                  create a row.
  */
 export default function row(rowVal, gutter, flex) {
-  let style = {
+  const style = {
     width: '100%',
   };
 

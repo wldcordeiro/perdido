@@ -16,8 +16,8 @@
  *                  create a column.
  */
 export default function column(columnVal, cycle, gutter, flex) {
-  let style = {},
-    cycleVal = cycle;
+  const style = {};
+  let cycleVal = cycle;
 
 
   if (columnVal !== 'none') {
