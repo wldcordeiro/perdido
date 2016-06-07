@@ -1,34 +1,21 @@
-import expect from 'expect.js'
-import jss from 'jss'
-import jssExtend from 'jss-extend'
-import jssNested from 'jss-nested'
-import jssCamelCase from 'jss-camel-case'
-import jssDefaultUnit from 'jss-default-unit'
-import jssVendorPrefixer from 'jss-vendor-prefixer' // eslint-disable-line import/no-unresolved
-// eslint-disable-line import/no-unresolved
+import perdido from 'perdido'; // eslint-disable-line import/no-unresolved
+import {jssSetup, jssReset, testMethod} from './helpers';
 
-export function jssReset() {
-  jss.plugins.registry = [];
-  jss.sheets.registry = [];
-  jss.uid.reset();  
-}
+afterEach(jssReset);
+beforeEach(jssSetup);
 
-export function jssSetup() {
-  jss.use(jssExtend());
-  jss.use(jssNested());
-  jss.use(jssCamelCase());
-  jss.use(jssDefaultUnit());
-  jss.use(jssVendorPrefixer());  
-}
+/* eslint-disable max-len */
+describe('Perdido Utilities', () => {
+  testMethod('can support applying edit indicator', perdido.utils.edit, [
+    'a {\n}',
+    'a *:not(input):not(textarea):not(select) {',
+    '  background-color: rgba(0, 0, 255, 0.1);\n}'
+  ]);
 
-export function testMethod(testName, method, testStrs) {
-  return it(testName, () => {
-    const sheet = jss.createStyleSheet({
-      a: {
-        extend: method,
-      },
-    }, {named: false});
-    expect(sheet.toString()).to.be(testStrs.join('\n'));
-  });
-}
-
+  testMethod('can support applying clearfix', perdido.utils.clearFix, [
+    'a {\n  *zoom: 1;\n}',
+    'a:before {\n  content: \'\';\n  display: table;\n}',
+    'a:after {\n  content: \'\';\n  display: table;\n  clear: both;\n}'
+  ]);
+});
+/* eslint-enable max-len */
