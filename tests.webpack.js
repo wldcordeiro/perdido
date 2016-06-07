@@ -1,2 +1,2 @@
-const context = require.context('./test', true, /\.js$/)
+const context = require.context('./tests', true, /\.js$/)
 context.keys().forEach(context)

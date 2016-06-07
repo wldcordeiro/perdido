@@ -1,10 +1,13 @@
-import jss from 'jss'
-import jssExtend from 'jss-extend'
-import jssNested from 'jss-nested'
-import jssCamelCase from 'jss-camel-case'
-import jssDefaultUnit from 'jss-default-unit'
-import jssVendorPrefixer from 'jss-vendor-prefixer'
-import perdido from 'perdido'
+import expect from 'expect.js';
+import jss from 'jss';
+import jssExtend from 'jss-extend';
+import jssNested from 'jss-nested';
+import jssCamelCase from 'jss-camel-case';
+import jssDefaultUnit from 'jss-default-unit';
+import jssVendorPrefixer from 'jss-vendor-prefixer';
+import perdido from 'perdido';
+
+/* eslint-disable max-len */
 
 describe('Perdido Creation', () => {
   beforeEach(() => {
@@ -13,67 +16,67 @@ describe('Perdido Creation', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   describe('create bare default Perdido', () => {
-    var testPerdido = perdido.create();
-    equal(testPerdido.gutter, '30px');
-    equal(testPerdido.flex, false);
-    equal(testPerdido.cycle, -1);
-    equal(testPerdido.offsetDir, 'row');
+    const testPerdido = perdido.create();
+    expect(testPerdido.gutter).to.be('30px');
+    expect(testPerdido.flex).to.be(false);
+    expect(testPerdido.cycle).to.be(-1);
+    expect(testPerdido.offsetDir).to.be('row');
   });
 
   describe('create Perdido with one override', () => {
-    var testPerdido = perdido.create({gutter: '60px'});
-    equal(testPerdido.gutter, '60px');
-    equal(testPerdido.flex, false);
-    equal(testPerdido.cycle, -1);
-    equal(testPerdido.offsetDir, 'row');
+    const testPerdido = perdido.create({gutter: '60px'});
+    expect(testPerdido.gutter).to.be('60px');
+    expect(testPerdido.flex).to.be(false);
+    expect(testPerdido.cycle).to.be(-1);
+    expect(testPerdido.offsetDir).to.be('row');
   });
 
   describe('create Perdido with two overrides', () => {
-    var testPerdido = perdido.create({gutter: '40em', flex: true});
-    equal(testPerdido.gutter, '40em');
-    equal(testPerdido.flex, true);
-    equal(testPerdido.cycle, -1);
-    equal(testPerdido.offsetDir, 'row');
+    const testPerdido = perdido.create({gutter: '40em', flex: true});
+    expect(testPerdido.gutter).to.be('40em');
+    expect(testPerdido.flex).to.be(true);
+    expect(testPerdido.cycle).to.be(-1);
+    expect(testPerdido.offsetDir).to.be('row');
   });
 
   describe('create Perdido with two out of order overrides', () => {
-    var testPerdido = perdido.create({gutter: '40em', cycle: 6});
-    equal(testPerdido.gutter, '40em');
-    equal(testPerdido.flex, false);
-    equal(testPerdido.cycle, 6);
-    equal(testPerdido.offsetDir, 'row');
+    const testPerdido = perdido.create({gutter: '40em', cycle: 6});
+    expect(testPerdido.gutter).to.be('40em');
+    expect(testPerdido.flex).to.be(false);
+    expect(testPerdido.cycle).to.be(6);
+    expect(testPerdido.offsetDir).to.be('row');
   });
 
   describe('create Perdido with three overrides', () => {
-    var testPerdido = perdido.create({gutter: '80em', flex: true, cycle: 3});
-    equal(testPerdido.gutter, '80em');
-    equal(testPerdido.flex, true);
-    equal(testPerdido.cycle, 3);
-    equal(testPerdido.offsetDir, 'row');
+    const testPerdido = perdido.create({gutter: '80em', flex: true, cycle: 3});
+    expect(testPerdido.gutter).to.be('80em');
+    expect(testPerdido.flex).to.be(true);
+    expect(testPerdido.cycle).to.be(3);
+    expect(testPerdido.offsetDir).to.be('row');
   });
 
   describe('create Perdido with four overrides', () => {
-    var testPerdido = perdido.create({gutter: '75rem', flex: true, cycle: 3,
+    const testPerdido = perdido.create({gutter: '75rem', flex: true, cycle: 3,
       offsetDir: 'column'});
-    equal(testPerdido.gutter, '75rem');
-    equal(testPerdido.flex, true);
-    equal(testPerdido.cycle, 3);
-    equal(testPerdido.offsetDir, 'column');
+    expect(testPerdido.gutter).to.be('75rem');
+    expect(testPerdido.flex).to.be(true);
+    expect(testPerdido.cycle).to.be(3);
+    expect(testPerdido.offsetDir).to.be('column');
   });
 });
 
 
 function testMethod(testName, method, testStrs) {
   return describe(testName, () => {
-    var sheet = jss.createStyleSheet({
+    const sheet = jss.createStyleSheet({
       a: {
         extend: method,
       },
     }, {named: false});
-    equal(sheet.toString(), testStrs.join('\n'));
+    expect(sheet.toString()).to.be(testStrs.join('\n'));
   });
 }
 
@@ -90,7 +93,7 @@ describe('Perdido Align', () => {
     perdido.flex = false;
     perdido.cycle = -1;
     perdido.offsetDir = 'row';
-  })
+  });
 
   testMethod('can support resetting alignment', perdido.align('reset'), [
     'a {\n  position: static;\n}',
@@ -195,8 +198,6 @@ describe('Perdido Align', () => {
   ]);
 });
 
-
-
 // Flex Align
 describe('Perdido Align Flex', () => {
   beforeEach(() => {
@@ -210,7 +211,7 @@ describe('Perdido Align Flex', () => {
     perdido.flex = false;
     perdido.cycle = -1;
     perdido.offsetDir = 'row';
-  })
+  });
 
   testMethod('can support resetting alignment', perdido.align('reset', {flex: true}), [
     'a {\n  display: initial;\n}',
@@ -298,8 +299,6 @@ describe('Perdido Align Flex', () => {
   ]);
 });
 
-
-
 // Center
 describe('Perdido Center', () => {
   beforeEach(() => {
@@ -313,7 +312,7 @@ describe('Perdido Center', () => {
     perdido.flex = false;
     perdido.cycle = -1;
     perdido.offsetDir = 'row';
-  })
+  });
 
   testMethod('can support horizontal centering containers', perdido.center('980px'), [
     'a {\n  max-width: 980px;\n  margin-left: auto;\n  margin-right: auto;\n}',
@@ -344,8 +343,8 @@ describe('Perdido Column', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
-  
+  });
+
   testMethod('can support 3 column layout', perdido.column('1/3'), [
     'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));\n}',
     'a:nth-child(n) {\n  float: left;\n  margin-right: 30px;\n  clear: none;\n}',
@@ -403,7 +402,7 @@ describe('Perdido FlexContainer', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support flex for row', perdido.flexContainer('row'), [
     'a {\n  display: flex;\n  flex-flow: row wrap;\n}'
@@ -423,8 +422,8 @@ describe('Perdido Masonry Column', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
-  
+  });
+
   testMethod('can support masonry grid custom column', perdido.masonryColumn('60px'), [
     'a {\n  float: left;\n  width: calc(99.99% * 60px - 30px);\n  margin-left: 15px;',
     '  margin-right: 15px;\n}'
@@ -459,7 +458,7 @@ describe('Perdido Masonry Wrap', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support creating a flexbox wrapper', perdido.masonryWrap({flex: true}), [
     'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -15px;',
@@ -487,7 +486,7 @@ describe('Perdido Move', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support moving elements left', perdido.move('1/3'), [
     'a {\n  position: relative;',
@@ -504,7 +503,7 @@ describe('Perdido Move', () => {
     '  top: calc(99.99% * 1/3 - (30px - 30px * 1/3) + 30px);\n}'
   ]);
 
-  testMethod('can support moving elements down', perdido.move('-1/3',{direction: 'column'}), [
+  testMethod('can support moving elements down', perdido.move('-1/3', {direction: 'column'}), [
     'a {\n  position: relative;',
     '  top: calc(99.99% * -1/3 - (30px - 30px * -1/3) + 30px);\n}'
   ]);
@@ -534,7 +533,7 @@ describe('Perdido Offset', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support moving elements to the left', perdido.offset('1/3'), [
     'a {\n  margin-right: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;\n}'
@@ -593,7 +592,7 @@ describe('Perdido Row', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support 3 row layout', perdido.row('1/3'), [
     'a {\n  width: 100%;\n  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));',
@@ -620,14 +619,14 @@ describe('Perdido Row', () => {
 
 
 // Utils
-describe('Perdido Utilities', function () {
+describe('Perdido Utilities', () => {
   beforeEach(() => {
     jss.use(jssExtend());
     jss.use(jssNested());
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support applying edit indicator', perdido.utils.edit, [
     'a {\n}',
@@ -651,7 +650,7 @@ describe('Perdido Waffle', () => {
     jss.use(jssCamelCase());
     jss.use(jssDefaultUnit());
     jss.use(jssVendorPrefixer());
-  })
+  });
 
   testMethod('can support a 3 column layout', perdido.waffle('1/3'), [
     'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));',
@@ -695,3 +694,4 @@ describe('Perdido Waffle', () => {
     'a:nth-last-child(-n + 3) {\n  margin-bottom: 0;\n}'
   ]);
 });
+/* eslint-enable max-len */
