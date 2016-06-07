@@ -5,7 +5,7 @@ import jssNested from 'jss-nested';
 import jssCamelCase from 'jss-camel-case';
 import jssDefaultUnit from 'jss-default-unit';
 import jssVendorPrefixer from 'jss-vendor-prefixer';
-import perdido from 'perdido';
+import perdido from 'perdido';  // eslint-disable-line import/no-unresolved
 
 /* eslint-disable max-len */
 

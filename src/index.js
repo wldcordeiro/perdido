@@ -7,4 +7,7 @@
  */
 
 import Perdido from './perdido';
-export default new Perdido();
+
+const perdido = new Perdido();
+
+export default perdido;
