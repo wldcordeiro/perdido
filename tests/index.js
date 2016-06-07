@@ -1,30 +1,15 @@
 import expect from 'expect.js';
-import jss from 'jss';
-import jssExtend from 'jss-extend';
-import jssNested from 'jss-nested';
-import jssCamelCase from 'jss-camel-case';
-import jssDefaultUnit from 'jss-default-unit';
-import jssVendorPrefixer from 'jss-vendor-prefixer';
 import Perdido from '../src/perdido'; // eslint-disable-line import/no-unresolved
 import perdido from 'perdido'; // eslint-disable-line import/no-unresolved
+import {jssSetup, jssReset, testMethod} from './utils'
+
+afterEach(jssReset);
+beforeEach(jssSetup);
 
 describe('Perdido', () => {
-  afterEach(() => {
-    jss.plugins.registry = [];
-    jss.sheets.registry = [];
-    jss.uid.reset();
-  });
 
   /* eslint-disable max-len */
   describe('Perdido Creation', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     it('should export a Perdido instance', () => {
       expect(perdido).to.be.a(Perdido)
@@ -84,28 +69,9 @@ describe('Perdido', () => {
     });
   });
 
-
-  function testMethod(testName, method, testStrs) {
-    return it(testName, () => {
-      const sheet = jss.createStyleSheet({
-        a: {
-          extend: method,
-        },
-      }, {named: false});
-      expect(sheet.toString()).to.be(testStrs.join('\n'));
-    });
-  }
-
   // Align
   describe('Perdido Align', () => {
     beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-
       perdido.gutter = '30px';
       perdido.flex = false;
       perdido.cycle = -1;
@@ -218,13 +184,6 @@ describe('Perdido', () => {
   // Flex Align
   describe('Perdido Align Flex', () => {
     beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-
       perdido.gutter = '30px';
       perdido.flex = false;
       perdido.cycle = -1;
@@ -320,13 +279,6 @@ describe('Perdido', () => {
   // Center
   describe('Perdido Center', () => {
     beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-
       perdido.gutter = '30px';
       perdido.flex = false;
       perdido.cycle = -1;
@@ -356,14 +308,6 @@ describe('Perdido', () => {
 
   // Column
   describe('Perdido Column', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support 3 column layout', perdido.column('1/3'), [
       'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));\n}',
@@ -416,14 +360,6 @@ describe('Perdido', () => {
 
   // Flex Container
   describe('Perdido FlexContainer', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support flex for row', perdido.flexContainer('row'), [
       'a {\n  display: flex;\n  flex-flow: row wrap;\n}'
@@ -437,14 +373,6 @@ describe('Perdido', () => {
 
   // Masonry Column
   describe('Perdido Masonry Column', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support masonry grid custom column', perdido.masonryColumn('60px'), [
       'a {\n  float: left;\n  width: calc(99.99% * 60px - 30px);\n  margin-left: 15px;',
@@ -474,14 +402,6 @@ describe('Perdido', () => {
 
   // Masonry Wrap
   describe('Perdido Masonry Wrap', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support creating a flexbox wrapper', perdido.masonryWrap({flex: true}), [
       'a {\n  display: flex;\n  flex-flow: row wrap;\n  margin-left: -15px;',
@@ -503,14 +423,6 @@ describe('Perdido', () => {
 
   // Move
   describe('Perdido Move', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support moving elements left', perdido.move('1/3'), [
       'a {\n  position: relative;',
@@ -551,14 +463,6 @@ describe('Perdido', () => {
 
   // Offset
   describe('Perdido Offset', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support moving elements to the left', perdido.offset('1/3'), [
       'a {\n  margin-right: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;\n}'
@@ -611,14 +515,6 @@ describe('Perdido', () => {
   // Row
 
   describe('Perdido Row', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support 3 row layout', perdido.row('1/3'), [
       'a {\n  width: 100%;\n  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));',
@@ -646,14 +542,6 @@ describe('Perdido', () => {
 
   // Utils
   describe('Perdido Utilities', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support applying edit indicator', perdido.utils.edit, [
       'a {\n}',
@@ -671,14 +559,6 @@ describe('Perdido', () => {
 
   // Waffle
   describe('Perdido Waffle', () => {
-    beforeEach(() => {
-      
-      jss.use(jssExtend());
-      jss.use(jssNested());
-      jss.use(jssCamelCase());
-      jss.use(jssDefaultUnit());
-      jss.use(jssVendorPrefixer());
-    });
 
     testMethod('can support a 3 column layout', perdido.waffle('1/3'), [
       'a {\n  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));',
