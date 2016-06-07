@@ -11,7 +11,7 @@
  *                  an element around the grid.
  */
 export default function move(moveVal, direction, gutter) {
-  let style = {
+  const style = {
     position: 'relative',
   };
 

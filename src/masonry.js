@@ -10,8 +10,8 @@
  *                  create a masonry grid column.
  */
 export function masonryColumn(columnVal, gutter, flex) {
-  let style = {},
-    unit = gutter.match(/\D/g);
+  const style = {};
+  let unit = gutter.match(/\D/g);
 
   if (unit !== null) {
     unit = unit.join('');
@@ -45,7 +45,7 @@ export function masonryColumn(columnVal, gutter, flex) {
  *                  create a masonry grid wrapping element.
  */
 export function masonryWrap(flex, gutter) {
-  let style = {};
+  const style = {};
   if (flex === false) {
     style['&:before'] = {
       content: "''",
@@ -62,7 +62,7 @@ export function masonryWrap(flex, gutter) {
     style.flexFlow = 'row wrap';
   }
 
-  let unit = gutter.match(/\D/g).join('');
+  const unit = gutter.match(/\D/g).join('');
 
   style.marginLeft = `${parseInt(gutter, 10) / -2}${unit}`;
   style.marginRight = `${parseInt(gutter, 10) / -2}${unit}`;

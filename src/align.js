@@ -35,7 +35,7 @@ function alignProps(position, top, right, bottom, left, transform) {
  */
 
 export default function align(alignment, flex) {
-  let style = {};
+  const style = {};
 
   if (flex === false) {
     if (alignment === 'reset') {

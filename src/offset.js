@@ -12,8 +12,8 @@
  *                            values to offset elements.
  */
 export default function offset(offsetVal, direction, gutter) {
-  let style = {},
-    numerator = parseInt(offsetVal.split('/')[0], 10);
+  const style = {};
+  const numerator = parseInt(offsetVal.split('/')[0], 10);
 
   if (direction === 'column') {
     if (numerator > 0) {

@@ -12,7 +12,7 @@
 
 
 export default function center(maxWidth, padding, flex) {
-  let style = {
+  const style = {
     maxWidth,
     marginLeft: 'auto',
     marginRight: 'auto',
