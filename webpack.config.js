@@ -42,7 +42,7 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     alias: {
-      jss: path.join(__dirname, 'src')
+      perdido: path.join(__dirname, 'src')
     }
   }
 }
